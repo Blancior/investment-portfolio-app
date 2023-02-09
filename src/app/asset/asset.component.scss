@@ -1,0 +1,23 @@
+@import '../variables';
+.searchBar{
+  width: 100%;
+  font-size: $font-size-input;
+}
+.s2 {
+  border: 2px solid red;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form1{
+  font-size: $font-size-normal;
+  padding: 10px;
+  border: 1px solid blue;
+}
+mat-form-field{
+  display: flex;
+  text-align: center;
+}
+mat-radio-group{
+  display: flex;
+  justify-content: center;
+}
