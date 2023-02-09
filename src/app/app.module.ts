@@ -11,6 +11,8 @@ import { AssetComponent } from './asset/asset.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatRadioModule} from "@angular/material/radio";
+import {AngularFireModule} from '@angular/fire/compat';
+import {environment} from "../environments/evinronments";
 
 @NgModule({
   declarations: [
@@ -28,9 +30,12 @@ import {MatRadioModule} from "@angular/material/radio";
     MatFormFieldModule,
     FormsModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}
