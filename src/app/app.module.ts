@@ -13,12 +13,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatRadioModule} from "@angular/material/radio";
 import {AngularFireModule} from '@angular/fire/compat';
 import {environment} from "../environments/evinronments";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AssetComponent
+    AssetComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,11 +32,14 @@ import {environment} from "../environments/evinronments";
     FormsModule,
     MatRadioModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule {
 
 }

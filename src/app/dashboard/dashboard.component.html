@@ -15,5 +15,7 @@
     <div class="col-sm-12 totalValue">inv1</div>
     <div class="col-sm-12 firstTrade">inv2</div>
     <div class="col-sm-12 totalInvestments">inv3</div>
-
-</div>
+  <div class="trade col-sm-12" *ngFor="let trade of trades">
+    <p>{{trade.coinName.toUpperCase()}} | {{trade.priceusd}} USD | {{trade.quantity}} | {{trade.date}}</p>
+  </div>
+  </div>

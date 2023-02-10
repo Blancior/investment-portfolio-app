@@ -1,6 +1,5 @@
 //pliki od bazy danych(const = ...),api tutaj
-
-// Import the functions you need from the SDKs you need
+import {initializeApp} from 'firebase/app';
 
 export const environment = {
   production: false,
@@ -15,3 +14,7 @@ export const environment = {
     measurementId: "G-NC71XWRFE4"
   },
 };
+const app = initializeApp(environment.firebase);
+export {app};
+
+
