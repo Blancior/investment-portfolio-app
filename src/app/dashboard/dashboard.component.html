@@ -1,4 +1,3 @@
-<p>dashboard works!</p>
 <div class="container">
   <div class="row">
     <div class="col-sm-4 totalValue">CurrenttotalValue</div>
@@ -12,10 +11,21 @@
 
 </div>
 <div class="container invList">
-    <div class="col-sm-12 totalValue">inv1</div>
-    <div class="col-sm-12 firstTrade">inv2</div>
-    <div class="col-sm-12 totalInvestments">inv3</div>
-  <div class="trade col-sm-12" *ngFor="let trade of trades">
-    <p>{{trade.coinName.toUpperCase()}} | {{trade.priceusd}} USD | {{trade.quantity}} | {{trade.date}}</p>
+    <p class="title1">List of trades</p>
+  <div class="descriptionList">
+    <p> index</p>
+    <p> asset name</p>
+    <p> value ($)</p>
+    <p> price ($)</p>
+    <p> quantity</p>
+    <p> date of bought</p>
+  </div>
+  <div class="trade col" *ngFor="let trade of trades; let i = index">
+    <p>{{i+1}}</p>
+    <p>{{trade.coinName.toUpperCase()}}</p>
+    <p>{{trade.priceusd*trade.quantity}}</p>
+    <p>{{trade.priceusd}}</p>
+    <p>{{trade.quantity}}</p>
+    <p>{{trade.date}}</p>
   </div>
   </div>
