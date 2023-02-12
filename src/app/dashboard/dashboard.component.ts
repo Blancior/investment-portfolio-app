@@ -4,7 +4,6 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
-
 })
 export class DashboardComponent implements OnInit{
   tradesAr: any[];

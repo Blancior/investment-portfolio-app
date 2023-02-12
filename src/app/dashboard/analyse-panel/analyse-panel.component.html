@@ -13,4 +13,23 @@
   </div><div class="row">
     <button class=" col-sm-2 btn btn-primary">dodaj trade</button>
   </div>
+  </div>
+<div class="container invList">
+  <p class="title1">List of trades</p>
+  <div class="descriptionList">
+    <p> index</p>
+    <p> asset name</p>
+    <p> value ($)</p>
+    <p> price ($)</p>
+    <p> quantity</p>
+    <p> date of bought</p>
+  </div>
+  <div class="trade col" *ngFor="let trade of trades; let i = index">
+    <p>{{i+1}}</p>
+    <p>{{trade.coinName.toUpperCase()}}</p>
+    <p>{{trade.priceusd*trade.quantity}}</p>
+    <p>{{trade.priceusd}}</p>
+    <p>{{trade.quantity}}</p>
+    <p>{{trade.date}}</p>
+  </div>
 </div>
