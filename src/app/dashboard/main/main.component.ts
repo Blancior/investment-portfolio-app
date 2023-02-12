@@ -8,16 +8,14 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 })
 export class MainComponent implements OnInit{
   trades: any[];
+  przyklad:string;
   constructor(private db: AngularFirestore) { }
+
 
   ngOnInit() {
     this.db.collection('trades').valueChanges().subscribe(trades => {
-      this.trades=trades;
+      this.trades = trades;
       console.log(trades);
     });
-
   }
-
-} {
-
 }

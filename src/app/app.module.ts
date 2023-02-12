@@ -15,6 +15,7 @@ import {AngularFireModule} from '@angular/fire/compat';
 import {environment} from "../environments/evinronments";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { MainComponent } from './dashboard/main/main.component';
+import { AnalysePanelComponent } from './dashboard/analyse-panel/analyse-panel.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MainComponent } from './dashboard/main/main.component';
     DashboardComponent,
     AssetComponent,
     MainComponent,
+    AnalysePanelComponent,
   ],
   imports: [
     BrowserModule,
