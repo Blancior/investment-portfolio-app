@@ -1,21 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-main',
+  selector: 'main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit{
-  trades: any[];
-  przyklad:string;
-  constructor(private db: AngularFirestore) { }
-
-
-  ngOnInit() {
-    this.db.collection('trades').valueChanges().subscribe(trades => {
-      this.trades = trades;
-      console.log(trades);
-    });
-  }
+export class MainComponent {
+  @Input() trades: any[];
 }
