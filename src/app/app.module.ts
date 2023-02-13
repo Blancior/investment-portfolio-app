@@ -16,6 +16,7 @@ import {environment} from "../environments/evinronments";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { MainComponent } from './dashboard/main/main.component';
 import { AnalysePanelComponent } from './dashboard/analyse-panel/analyse-panel.component';
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AnalysePanelComponent } from './dashboard/analyse-panel/analyse-panel.c
     MatRadioModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

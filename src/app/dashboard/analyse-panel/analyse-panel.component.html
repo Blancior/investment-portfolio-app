@@ -1,15 +1,17 @@
 <p>analyse-panel works!</p>
 <div class="container">
-  <div class="row">
+  <div class="row charts">
     <div class="col-sm-4 chart1">wykres</div>
     <div class="col-sm-4 chart1">1234</div>
     <div class="col-sm-4 chart1">12421</div>
   </div>
   <div class="row">
-    <div class="col-sm-3 totalValue">CurrenttotalValue($)</div>
-    <div class="col-sm-3 firstTrade">firstTrade Date</div>
-    <div class="col-sm-3 totalInvestments">totalInvestments($)</div>
-    <div class="col-sm-3 tradeQuantity">ilosc tradeow</div>
+    <div class="info">
+      <div class="col-sm-3 totalValue">CurrenttotalValue($)</div>
+      <div class="col-sm-3 firstTrade">firstTrade Date</div>
+      <div class="col-sm-3 totalInvestments">totalInvestments($)</div>
+      <div class="col-sm-3 tradeQuantity">ilosc tradeow</div>
+    </div>
   </div><div class="row">
     <button class=" col-sm-2 btn btn-primary">dodaj trade</button>
   </div>
@@ -23,6 +25,7 @@
     <p> price ($)</p>
     <p> quantity</p>
     <p> date of bought</p>
+    <p> test</p>
   </div>
   <div class="trade col" *ngFor="let trade of trades; let i = index">
     <p>{{i+1}}</p>
@@ -31,5 +34,6 @@
     <p>{{trade.priceusd}}</p>
     <p>{{trade.quantity}}</p>
     <p>{{trade.date}}</p>
+    <button mat-mini-fab>edit</button>
   </div>
 </div>
