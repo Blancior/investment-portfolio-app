@@ -8,7 +8,6 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 })
 export class AnalysePanelComponent implements OnInit {
 
-
   trades:any[];
   constructor(private db: AngularFirestore) { }
   ngOnInit() {
@@ -16,5 +15,6 @@ export class AnalysePanelComponent implements OnInit {
       this.trades = trades;
       console.log(trades);
     });
+    }
   }
-}
+
