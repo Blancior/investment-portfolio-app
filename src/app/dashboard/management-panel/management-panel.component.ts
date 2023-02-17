@@ -13,7 +13,7 @@ export class ManagementPanelComponent implements OnInit {
     CPriceI:number;
     CDateI:string = new Date().toDateString();
     constructor(private db: AngularFirestore) { }
-  // s
+
 
   ngOnInit() {
     this.db.collection('trades').valueChanges().subscribe(trades => {
