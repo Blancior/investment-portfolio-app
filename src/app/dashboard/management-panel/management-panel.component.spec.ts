@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ManagementPanelComponent } from './management-panel.component';
+// s
 
 describe('AnalysePanelComponent', () => {
   let component: ManagementPanelComponent;

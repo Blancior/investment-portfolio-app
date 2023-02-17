@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'management-panel', component: ManagementPanelComponent}
 
 ];
-
+// s
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

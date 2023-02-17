@@ -17,7 +17,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { MainComponent } from './dashboard/main/main.component';
 import { ManagementPanelComponent } from './dashboard/management-panel/management-panel.component';
 import {MatButtonModule} from "@angular/material/button";
-
+// s
 @NgModule({
   declarations: [
     AppComponent,
