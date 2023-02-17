@@ -15,7 +15,7 @@ import {AngularFireModule} from '@angular/fire/compat';
 import {environment} from "../environments/evinronments";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { MainComponent } from './dashboard/main/main.component';
-import { AnalysePanelComponent } from './dashboard/analyse-panel/analyse-panel.component';
+import { ManagementPanelComponent } from './dashboard/management-panel/management-panel.component';
 import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
@@ -24,7 +24,7 @@ import {MatButtonModule} from "@angular/material/button";
     DashboardComponent,
     AssetComponent,
     MainComponent,
-    AnalysePanelComponent,
+    ManagementPanelComponent,
   ],
   imports: [
     BrowserModule,

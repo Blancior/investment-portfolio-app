@@ -13,9 +13,17 @@
     </div>
   </div>
     <div class="row">
-      <button class=" col-sm-2 btn btn-primary">dodaj trade</button>
+      <p class="text-center">Import your trade below:</p>
+      <div class=" trade col">
+        <input type="text" class="inp CName" placeholder="coin name" [(ngModel)]="CnameI" required>
+        <input type="number" class="inp Quant" placeholder="quantity" [(ngModel)]="CQuantI" required>
+        <input type="number" class="inp Price" placeholder="price" [(ngModel)]="CPriceI" required>
+        <input type="date" class="inp Date" placeholder="date" [(ngModel)]="CDateI">
+        <button class=" col-sm-2 btn btn-primary" mat-mini-fab (click)="addTrade()">add</button>
+      </div>
     </div>
-  </div>
+</div>
+
 <div class="container invList">
   <p class="title1">List of trades</p>
   <div class="descriptionList">
@@ -25,16 +33,7 @@
     <p> price ($)</p>
     <p> quantity</p>
     <p> date of bought</p>
-    <p> test</p>
-  </div>
-  <div class=" trade col">
-    <p>0</p>
-    <p>EXMP</p>
-    <p>EXMP</p>
-    <p>EXMP</p>
-    <p>EXMP</p>
-    <p>EX-EX-EXMP</p>
-    <button class=" col-sm-2 btn btn-primary" mat-mini-fab>add</button>
+    <p> action</p>
   </div>
   <div class="trade col" *ngFor="let trade of trades; let i = index">
     <p>{{i+1}}</p>
@@ -42,7 +41,8 @@
     <p>{{trade.priceusd*trade.quantity}}</p>
     <p>{{trade.priceusd}}</p>
     <p>{{trade.quantity}}</p>
-    <p>{{trade.date}}</p>
+    <p>{{trade.date | date: 'dd-MM-yyyy'}}</p>
     <button mat-mini-fab>edit</button>
   </div>
+
 </div>

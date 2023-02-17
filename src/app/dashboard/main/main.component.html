@@ -24,12 +24,12 @@
     <p> date of bought</p>
   </div>
   <div class="trade col" *ngFor="let trade of trades; let i = index">
-    <p>{{i+1}}</p>
+    <p class="align-items-center">{{i+1}}</p>
     <p>{{trade.coinName.toUpperCase()}}</p>
     <p>{{trade.priceusd*trade.quantity}}</p>
     <p>{{trade.priceusd}}</p>
     <p>{{trade.quantity}}</p>
-    <p>{{trade.date}}</p>
+    <p>{{trade.date | date: 'dd-MM-yyyy'}}</p>
   </div>
 </div>
 </div>

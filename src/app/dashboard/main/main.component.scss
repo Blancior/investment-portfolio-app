@@ -26,18 +26,20 @@
   border: 1px solid orange;
 }
 .descriptionList > p {
-  min-width: 50px;
+  width: clamp(50px,100px,100px);
   border: 1px solid saddlebrown;
+  margin: 10px;
+  text-align: center;
 }
+
 .trade{
-  display: flex;
   justify-content: space-between;
   margin: 10px 50px;
   align-items: baseline;
 }
 .trade >p{
   border: 1px solid green;
-  min-width: 50px;
+  width: clamp(50px,100px,100px);
   text-align: center;
 }
 .title1{
