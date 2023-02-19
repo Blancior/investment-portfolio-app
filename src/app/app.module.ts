@@ -4,16 +4,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {AngularFireModule} from '@angular/fire/compat';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { AssetComponent } from './dashboard/asset/asset.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatRadioModule} from "@angular/material/radio";
-import {AngularFireModule} from '@angular/fire/compat';
 import {environment} from "../environments/evinronments";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { MainComponent } from './dashboard/main/main.component';
 import { ManagementPanelComponent } from './dashboard/management-panel/management-panel.component';
 import {MatButtonModule} from "@angular/material/button";
@@ -26,21 +25,20 @@ import {MatButtonModule} from "@angular/material/button";
     MainComponent,
     ManagementPanelComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonToggleModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatRadioModule,
-    ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    MatButtonModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonToggleModule,
+        MatFormFieldModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        MatButtonModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

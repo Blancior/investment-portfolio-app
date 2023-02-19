@@ -1,35 +1,35 @@
 <div class="container">
-<div class="row">
-  <div class="col-sm-4 totalValue">CurrenttotalValue</div>
-  <div class="col-sm-4 firstTrade">firstTrade Date</div>
-  <div class="col-sm-4 totalInvestments">totalInvestments</div>
-</div><div class="row">
-  <div class="col-sm-4 profit">profit/loss %</div>
-  <div class="col-sm-4 lastTrade">lastTrade Date</div>
-  <div class="col-sm-4 ???">????</div>
-</div>
-  <div class="row charts">
-    <div class="col-sm-4 chart1">wykres</div>
-    <div class="col-sm-4 chart1">1234</div>
-    <div class="col-sm-4 chart1">12421</div>
+  <div class="row">
+    <div class="col-sm-4 totalValue">CurrenttotalValue</div>
+    <div class="col-sm-4 firstTrade">firstTrade Date</div>
+    <div class="col-sm-4 totalInvestments">totalInvestments</div>
+  </div><div class="row">
+    <div class="col-sm-4 profit">profit/loss %</div>
+    <div class="col-sm-4 lastTrade">lastTrade Date</div>
+    <div class="col-sm-4 ???">????</div>
   </div>
-  <div class="container invList">
-  <p class="title1">List of trades</p>
-  <div class="descriptionList">
-    <p> index</p>
-    <p> asset name</p>
-    <p> value ($)</p>
-    <p> price ($)</p>
-    <p> quantity</p>
-    <p> date of bought</p>
+    <div class="row charts">
+      <div class="col-sm-4 chart1">wykres</div>
+      <div class="col-sm-4 chart1">1234</div>
+      <div class="col-sm-4 chart1">12421</div>
+    </div>
+    <div class="container invList">
+    <p class="title1">List of trades</p>
+    <div class="descriptionList">
+      <p> index</p>
+      <p> asset name</p>
+      <p> value ($)</p>
+      <p> price ($)</p>
+      <p> quantity</p>
+      <p> date of bought</p>
+    </div>
+    <div class="trade col" *ngFor="let trade of trades; let i = index">
+      <p class="align-items-center">{{i+1}}</p>
+      <p>{{trade.coinName.toUpperCase()}}</p>
+      <p>{{trade.priceusd*trade.quantity}}</p>
+      <p>{{trade.priceusd}}</p>
+      <p>{{trade.quantity}}</p>
+      <p>{{trade.date | date: 'dd-MM-yyyy'}}</p>
+    </div>
   </div>
-  <div class="trade col" *ngFor="let trade of trades; let i = index">
-    <p class="align-items-center">{{i+1}}</p>
-    <p>{{trade.coinName.toUpperCase()}}</p>
-    <p>{{trade.priceusd*trade.quantity}}</p>
-    <p>{{trade.priceusd}}</p>
-    <p>{{trade.quantity}}</p>
-    <p>{{trade.date | date: 'dd-MM-yyyy'}}</p>
-  </div>
-</div>
 </div>
