@@ -1,3 +1,4 @@
+@import "src/app/dashboard/main/main.component";
 .info{
   display: flex;
 }
@@ -8,5 +9,27 @@
 }
 .descriptionList > p:last-child{
   width: fit-content;
-
 }
+.button-group > button{
+  margin: 5px;
+}
+.desc2{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+  border: 1px solid orange;
+}
+.desc2 > p{
+  width: clamp(50px,100px,100px);
+  border: 1px solid saddlebrown;
+  margin: 10px;
+  text-align: center;
+}
+.input-list> input{
+}
+input{
+  border-radius: 25px;
+  width: clamp(50px,200px,200px);
+}
+
+

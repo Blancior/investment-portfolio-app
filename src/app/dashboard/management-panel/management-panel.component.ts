@@ -22,9 +22,9 @@ export class ManagementPanelComponent implements OnInit{
     const rc = this.db.collection('trades');
     rc.add({
       coinName: this.CnameI.toUpperCase(),
-      priceusd: this.CPriceI.toString(),
-      quantity: this.CQuantI.toString(),
-      date: this.CDateI.toString(),
+      priceusd: this.CPriceI,
+      quantity: this.CQuantI,
+      date: this.CDateI,
     });
   }
   deleteRecord(coinName: string, quantity: string, date: string, priceusd: string) {

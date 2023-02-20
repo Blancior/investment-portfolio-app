@@ -22,8 +22,8 @@
 .descriptionList{
   display: flex;
   justify-content: space-between;
-  margin: 10px 50px;
-  border: 1px solid orange;
+  margin: 10px 20px;
+
 }
 .descriptionList > p {
   width: clamp(50px,100px,100px);
@@ -34,11 +34,10 @@
 
 .trade{
   justify-content: space-between;
-  margin: 10px 50px;
+  margin: 10px 20px;
   align-items: baseline;
 }
 .trade >p{
-
   border: 1px solid green;
   width: clamp(50px,100px,100px);
   text-align: center;

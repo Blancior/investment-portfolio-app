@@ -1,4 +1,14 @@
 <div class="container">
+  <div class="row">
+    <p class="text-center">Import your trade below:</p>
+    <div class="trade col input-list">
+      <input type="text" class="inp CName" placeholder="  enter coin name" [(ngModel)]="CnameI" required>
+      <input type="number" class="inp Quant" placeholder="  enter amount" [(ngModel)]="CQuantI" required>
+      <input type="number" class="inp Price" placeholder="  enter price" [(ngModel)]="CPriceI" required>
+      <input type="date" class="inp Date" placeholder="date" [(ngModel)]="CDateI">
+      <button class=" col-sm-2 btn btn-primary" mat-mini-fab (click)="addTrade()">add</button>
+    </div>
+  </div>
   <div class="row charts">
     <div class="col-sm-4 chart1">wykres</div>
     <div class="col-sm-4 chart1">1234</div>
@@ -12,20 +22,10 @@
       <div class="col-sm-3 tradeQuantity">ilosc tradeow</div>
     </div>
   </div>
-    <div class="row">
-      <p class="text-center">Import your trade below:</p>
-      <div class=" trade col">
-        <input type="text" class="inp CName" placeholder="coin name" [(ngModel)]="CnameI" required>
-        <input type="number" class="inp Quant" placeholder="quantity" [(ngModel)]="CQuantI" required>
-        <input type="number" class="inp Price" placeholder="price" [(ngModel)]="CPriceI" required>
-        <input type="date" class="inp Date" placeholder="date" [(ngModel)]="CDateI">
-        <button class=" col-sm-2 btn btn-primary" mat-mini-fab (click)="addTrade()">add</button>
-      </div>
-    </div>
 </div>
 <div class="container invList">
   <p class="title1">List of trades</p>
-  <div class="descriptionList">
+  <div class="desc2">
     <p> index</p>
     <p> asset name</p>
     <p> value ($)</p>
@@ -37,11 +37,18 @@
   <div class="trade col" *ngFor="let trade of trades; let i = index">
     <p>{{i+1}}</p>
     <p>{{trade.coinName.toUpperCase()}}</p>
-    <p>{{trade.priceusd*trade.quantity}}</p>
+    <p>{{(trade.priceusd*trade.quantity)}}</p>
     <p>{{trade.priceusd}}</p>
     <p>{{trade.quantity}}</p>
     <p>{{trade.date | date: 'dd-MM-yyyy'}}</p>
-    <button mat-mini-fab (click)="deleteRecord(trade.coinName,trade.quantity,trade.date,trade.priceusd)">delete</button>
+    <span class="button-group">
+      <button mat-mini-fab>
+        <mat-icon>edit</mat-icon>
+      </button>
+    <button mat-mini-fab (click)="deleteRecord(trade.coinName,trade.quantity,trade.date,trade.priceusd)">
+      	<mat-icon>remove_circle_outline</mat-icon>
+    </button>
+    </span>
   </div>
 </div>
 
