@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
+
 @Component({
   selector: 'management-panel',
   templateUrl: 'management-panel.component.html',
@@ -11,7 +12,8 @@ export class ManagementPanelComponent implements OnInit{
   CQuantI:string;
   CPriceI:string;
   CDateI:string = new Date().toDateString();
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore) {
+  }
   ngOnInit() {
     this.db.collection('trades').valueChanges().subscribe(trades => {
       this.trades = trades;
@@ -39,6 +41,7 @@ export class ManagementPanelComponent implements OnInit{
       });
     });
   }
+
 }
 
 
