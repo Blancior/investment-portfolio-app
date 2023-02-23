@@ -5,7 +5,7 @@
         <input type="text" class="inp col-sm-2" placeholder="  enter coin name" [(ngModel)]="CnameI" required>
         <input type="number" class="inp col-sm-2" placeholder="  enter amount" [(ngModel)]="CQuantI" required>
         <input type="number" class="inp col-sm-2" placeholder="  enter price" [(ngModel)]="CPriceI" required>
-        <input type="number" class="inp col-sm-2" placeholder="  enter invested money" [(ngModel)]="CInvestedMoneyI" required>
+        <input type="number" class="inp col-sm-2" placeholder="  enter invested money" [(ngModel)]="CInvestedMoneyI">
         <input type="date" class="inp col-sm-2" placeholder="date" [(ngModel)]="CDateI">
       <button class=" col-sm-2 btn btn-primary" mat-mini-fab (click)="addTrade()">add</button>
     </div>
@@ -19,7 +19,7 @@
     <div class="info">
       <div class="col-sm-3 totalValue">CurrenttotalValue($)</div>
       <div class="col-sm-3 firstTrade">firstTrade Date</div>
-      <div class="col-sm-3 totalInvestments">totalInvestments($)</div>
+      <div class="col-sm-3 totalInvestments">totalInvestments($) {{sumInvested$ | async}}</div>
       <div class="col-sm-3 tradeQuantity">ilosc tradeow</div>
     </div>
   </div>
@@ -35,13 +35,13 @@
     <p> date of bought</p>
     <p> action</p>
   </div>
-  <div class="trade col" *ngFor="let trade of trades; let i = index">
-    <p>{{i+1}}</p>
-    <p>{{trade.coinName.toUpperCase()}}</p>
-    <p>{{(trade.priceusd*trade.quantity)}}</p>
-    <p>{{trade.priceusd}}</p>
-    <p>{{trade.quantity}}</p>
-    <p>{{trade.date | date: 'dd-MM-yyyy'}}</p>
+  <ul class="trade col" *ngFor="let trade of trades; let i = index">
+    <li>{{i+1}}</li>
+    <li>{{trade.coinName.toUpperCase()}}</li>
+    <li>{{(trade.priceusd*trade.quantity)}}</li>
+    <li>{{trade.priceusd}}</li>
+    <li>{{trade.quantity}}</li>
+    <li>{{trade.date | date: 'dd-MM-yyyy'}}</li>
     <span class="button-group">
       <button mat-mini-fab color="primary">
         <mat-icon>edit</mat-icon>
@@ -50,6 +50,6 @@
       	<mat-icon>remove_circle_outline</mat-icon>
     </button>
     </span>
-  </div>
+  </ul>
 </div>
 

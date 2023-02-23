@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-4 totalValue">CurrenttotalValue</div>
     <div class="col-sm-4 firstTrade">firstTrade Date {{minTradeDate}}</div>
-    <div class="col-sm-4 totalInvestments">totalInvestments</div>
+    <div class="col-sm-4 totalInvestments">totalInvestments {{sumInvested$ | async}}</div>
   </div><div class="row">
     <div class="col-sm-4 profit">profit/loss %</div>
     <div class="col-sm-4 lastTrade">lastTrade Date {{maxTradeDate}}</div>
@@ -24,12 +24,12 @@
       <p> date of bought</p>
     </div>
     <div class="trade col" *ngFor="let trade of trades; let i = index">
-      <p class="align-items-center">{{i+1}}</p>
-      <p>{{trade.coinName.toUpperCase()}}</p>
-      <p>{{(trade.priceusd*trade.quantity).toFixed(2)}}</p>
-      <p>{{trade.priceusd}}</p>
-      <p>{{trade.quantity}}</p>
-      <p>{{trade.date | date: 'dd-MM-yyyy'}}</p>
+      <li>{{i+1}}</li>
+      <li>{{trade.coinName.toUpperCase()}}</li>
+      <li>{{(trade.priceusd*trade.quantity).toFixed(2)}}</li>
+      <li>{{trade.priceusd}}</li>
+      <li>{{trade.quantity}}</li>
+      <li>{{trade.date | date: 'dd-MM-yyyy'}}</li>
     </div>
   </div>
 </div>

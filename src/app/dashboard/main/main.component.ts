@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component,Input} from '@angular/core';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-main',
@@ -9,5 +10,5 @@ export class MainComponent{
   @Input() trades: any[];
   @Input() maxTradeDate: any;
   @Input() minTradeDate: any;
-
+  @Input() sumInvested$: Observable<number>;
 }

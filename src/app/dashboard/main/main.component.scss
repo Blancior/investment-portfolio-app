@@ -25,6 +25,9 @@
   margin: 10px 20px;
 
 }
+li{
+  list-style-type: none;
+}
 .descriptionList > p {
   width: clamp(50px,100px,100px);
   border: 1px solid saddlebrown;
@@ -37,10 +40,11 @@
   margin: 10px 20px;
   align-items: baseline;
 }
-.trade >p{
+.trade >li{
   border: 1px solid green;
   width: clamp(50px,100px,100px);
   text-align: center;
+  list-style-type: none;
 }
 .title1{
   @extend .fullCenter;

@@ -1,18 +1,28 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {map, Observable } from 'rxjs';
+
+interface Record{
+  coinName:string,
+  quantity:number,
+  priceusd:number,
+  investedInUSD:number;
+  date: string;
+}
 @Component({
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit {
   tradesAr: any[];
   maxDate: any;
   minDate: any;
+  totalInvested$: Observable<number>;
   constructor(private db: AngularFirestore) {
     this.getMinDate();
     this.getMaxDate();
-
+    this.sumInvestedMoney();
   }
 
   ngOnInit() {
@@ -21,11 +31,6 @@ export class DashboardComponent implements OnInit{
       console.log(trades);
     });
   }
-  // tu trzeba dorobic podawanie aktualnej ceny aktywa
-  // getCurrentPrice(coinName: string) {
-  //   const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coinName}&vs_currencies=usd`;
-  //   return this.http.get(url);
-  // }
   getMaxDate(){
     this.db.collection('trades', ref => ref
       .orderBy('date', 'desc')
@@ -45,5 +50,11 @@ export class DashboardComponent implements OnInit{
         this.minDate = data.date;
       });
     }).catch(error => {console.log(error)});
+  }
+  sumInvestedMoney(){
+    this.totalInvested$ = this.db.collection<Record>('trades').valueChanges()
+      .pipe(
+        map(data => data.reduce((acc, curr) => acc + curr.investedInUSD, 0))
+      );
   }
 }
