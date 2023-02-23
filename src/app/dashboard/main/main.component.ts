@@ -9,4 +9,5 @@ export class MainComponent{
   @Input() trades: any[];
   @Input() maxTradeDate: any;
   @Input() minTradeDate: any;
+
 }

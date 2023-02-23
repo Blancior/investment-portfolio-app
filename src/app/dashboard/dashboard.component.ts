@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit{
   constructor(private db: AngularFirestore) {
     this.getMinDate();
     this.getMaxDate();
+
   }
 
   ngOnInit() {
@@ -20,6 +21,11 @@ export class DashboardComponent implements OnInit{
       console.log(trades);
     });
   }
+  // tu trzeba dorobic podawanie aktualnej ceny aktywa
+  // getCurrentPrice(coinName: string) {
+  //   const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coinName}&vs_currencies=usd`;
+  //   return this.http.get(url);
+  // }
   getMaxDate(){
     this.db.collection('trades', ref => ref
       .orderBy('date', 'desc')
@@ -32,14 +38,12 @@ export class DashboardComponent implements OnInit{
     });
   }
   getMinDate(){
-    this.db.collection('trades', ref => ref
-      .orderBy('date',"asc")
-      .limit(1)
+    this.db.collection('trades', ref => ref.orderBy('date',"asc").limit(1)
     ).get().toPromise().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         const data = doc.data() as { date: string};
         this.minDate = data.date;
       });
-    });
+    }).catch(error => {console.log(error)});
   }
 }

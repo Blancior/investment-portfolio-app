@@ -11,8 +11,11 @@ export class ManagementPanelComponent implements OnInit{
   CnameI:string;
   CQuantI:string;
   CPriceI:string;
+  sum:number;
+  CInvestedMoneyI:string;
   CDateI:string = new Date().toDateString();
   constructor(private db: AngularFirestore) {
+
   }
   ngOnInit() {
     this.db.collection('trades').valueChanges().subscribe(trades => {
@@ -20,11 +23,13 @@ export class ManagementPanelComponent implements OnInit{
       console.log(trades);
     });
   }
+
   addTrade(){
     const rc = this.db.collection('trades');
     rc.add({
       coinName: this.CnameI.toUpperCase(),
       priceusd: this.CPriceI,
+      investedInUSD: this.CInvestedMoneyI,
       quantity: this.CQuantI,
       date: this.CDateI,
     });
