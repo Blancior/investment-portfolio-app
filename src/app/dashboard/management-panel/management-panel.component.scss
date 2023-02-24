@@ -7,7 +7,9 @@
   text-align: center;
   width: content-box;
 }
-
+.text-center{
+  font-size: $font-size-title;
+}
 .button-group > button{
   margin: 5px;
 }
@@ -26,6 +28,9 @@
 input{
   border-radius: 25px;
   width: 150px;
+}
+form{
+  @extend .fullCenter;
 }
 
 

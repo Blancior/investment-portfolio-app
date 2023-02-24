@@ -21,7 +21,7 @@ export class ManagementPanelComponent implements OnInit{
   CnameI:string;
   CQuantI:number;
   CPriceI:number;
-  CInvestedMoneyI:number=0;
+  CInvestedMoneyI:number;
   CDateI:string = new Date().toDateString();
   constructor(private db: AngularFirestore) {
     this.sumInvestedMoney();

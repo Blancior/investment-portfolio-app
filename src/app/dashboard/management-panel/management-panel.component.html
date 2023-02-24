@@ -2,12 +2,14 @@
   <div class="row">
     <p class="text-center">Import your trade below:</p>
     <div class="trade row input-list">
+      <form>
         <input type="text" class="inp col-sm-2" placeholder="  enter coin name" [(ngModel)]="CnameI" required>
         <input type="number" class="inp col-sm-2" placeholder="  enter amount" [(ngModel)]="CQuantI" required>
         <input type="number" class="inp col-sm-2" placeholder="  enter price" [(ngModel)]="CPriceI" required>
-        <input type="number" class="inp col-sm-2" placeholder="  enter invested money" [(ngModel)]="CInvestedMoneyI">
+        <input type="number" class="inp col-sm-2" placeholder="  enter invested money" [(ngModel)]="CInvestedMoneyI" required>
         <input type="date" class="inp col-sm-2" placeholder="date" [(ngModel)]="CDateI">
-      <button class=" col-sm-2 btn btn-primary" mat-mini-fab (click)="addTrade()">add</button>
+        <button class=" col-sm-2 btn btn-primary" mat-mini-fab (click)="addTrade()">add</button>
+      </form>
     </div>
   </div>
   <div class="row charts">
