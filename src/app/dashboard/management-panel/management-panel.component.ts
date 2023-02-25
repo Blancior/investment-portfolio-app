@@ -34,7 +34,7 @@ export class ManagementPanelComponent implements OnInit{
   addTrade(){
     const rc = this.db.collection('trades');
     rc.add({
-      coinName: this.CnameI.toUpperCase(),
+      coinName: this.CnameI,
       priceusd: this.CPriceI,
       investedInUSD: this.CInvestedMoneyI,
       quantity: this.CQuantI,

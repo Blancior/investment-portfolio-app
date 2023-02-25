@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {map, Observable } from 'rxjs';
+import {combineLatest, map, Observable} from 'rxjs';
+import axios from "axios";
 
-interface Record{
+export interface Record{
   coinName:string,
   quantity:number,
   priceusd:number,
@@ -19,10 +20,17 @@ export class DashboardComponent implements OnInit {
   maxDate: any;
   minDate: any;
   totalInvested$: Observable<number>;
+  records$: Observable<Record[]>;
+  coinNames: string[];
   constructor(private db: AngularFirestore) {
     this.getMinDate();
     this.getMaxDate();
     this.sumInvestedMoney();
+    this.db.collection<Record>('trades').get().subscribe(querySnapshot => {
+      const names: any[] = querySnapshot.docs.map(doc => doc.data().coinName);
+      console.log(names.join(','));
+      this.getCurrentPrices();
+    });
   }
 
   ngOnInit() {
@@ -56,5 +64,19 @@ export class DashboardComponent implements OnInit {
       .pipe(
         map(data => data.reduce((acc, curr) => acc + curr.investedInUSD, 0))
       );
+  }
+  getCurrentPrices(){
+    this.records$ = this.db.collection<Record>('trades').valueChanges();
+    this.records$ = combineLatest([
+      this.records$, axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,dogecoin&vs_currencies=usd')
+        .then(response => response.data)
+    ]).pipe(
+      map(([records, prices]) => {
+        return records.map(record => {
+          record.priceusd = prices[record.coinName.toLowerCase()].usd;
+          return record;
+        });
+      })
+    );
   }
 }

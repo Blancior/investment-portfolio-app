@@ -1,4 +1,8 @@
 <div class="container">
   <router-outlet></router-outlet>
-  <app-main [trades]="tradesAr" [maxTradeDate]="maxDate" [minTradeDate]="minDate" [sumInvested$]="totalInvested$"></app-main>
+  <app-main [trades]="tradesAr" [maxTradeDate]="maxDate" [minTradeDate]="minDate" [sumInvested$]="totalInvested$" [trades$]="records$"></app-main>
+  <div *ngFor="let record of records$ | async">
+    {{record.coinName}} | {{record.priceusd}}
+  </div>
+  <p>aaxcaxa</p>
 </div>

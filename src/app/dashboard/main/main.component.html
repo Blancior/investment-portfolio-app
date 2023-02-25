@@ -23,7 +23,7 @@
       <p> quantity</p>
       <p> date of bought</p>
     </div>
-    <div class="trade col" *ngFor="let trade of trades; let i = index">
+    <div class="trade col" *ngFor="let trade of trades$ | async; let i = index">
       <li>{{i+1}}</li>
       <li>{{trade.coinName.toUpperCase()}}</li>
       <li>{{(trade.priceusd*trade.quantity).toFixed(2)}}</li>
