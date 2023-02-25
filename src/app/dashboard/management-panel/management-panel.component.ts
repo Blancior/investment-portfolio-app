@@ -20,33 +20,34 @@ export class ManagementPanelComponent implements OnInit{
   trades:any[];
   CnameI:string;
   CQuantI:number;
-  CPriceI:number;
   CInvestedMoneyI:number;
-  CDateI:string = new Date().toDateString();
+  CDateI:string = new Date().toISOString().slice(0,19);
   constructor(private db: AngularFirestore) {
     this.sumInvestedMoney();
   }
   ngOnInit() {
+    // setInterval(() => {
+    //   this.CDateI = new Date().toString();
+    // },1000);
     this.db.collection('trades').valueChanges().subscribe(trades => {
       this.trades = trades;
     });
   }
   addTrade(){
+    this.CDateI= new Date().toISOString().slice(0,19);
     const rc = this.db.collection('trades');
     rc.add({
       coinName: this.CnameI,
-      priceusd: this.CPriceI,
       investedInUSD: this.CInvestedMoneyI,
       quantity: this.CQuantI,
       date: this.CDateI,
     });
   }
-  deleteRecord(coinName: string, quantity: string, date: string, priceusd: string) {
+  deleteRecord(coinName: string, quantity: string, date: string) {
     this.db.collection('trades', ref => ref
       .where('coinName', '==', coinName)
       .where('quantity', '==', quantity)
       .where('date', '==', date)
-      .where('priceusd', '==', priceusd)
     ).get().toPromise().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         doc.ref.delete();

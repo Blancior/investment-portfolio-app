@@ -16,6 +16,7 @@ import {environment} from "../environments/evinronments";
 import { MainComponent } from './dashboard/main/main.component';
 import { ManagementPanelComponent } from './dashboard/management-panel/management-panel.component';
 import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatButtonModule} from "@angular/material/button";
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         MatButtonModule,
+        MatInputModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

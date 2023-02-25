@@ -2,12 +2,13 @@
   <div class="row">
     <p class="text-center">Import your trade below:</p>
     <div class="trade row input-list">
-        <input type="text" class="inp col-sm-2" placeholder="  enter coin name" [(ngModel)]="CnameI" required>
-        <input type="number" class="inp col-sm-2" placeholder="  enter amount" [(ngModel)]="CQuantI" required>
-        <input type="number" class="inp col-sm-2" placeholder="  enter price" [(ngModel)]="CPriceI" required>
-        <input type="number" class="inp col-sm-2" placeholder="  enter invested money" [(ngModel)]="CInvestedMoneyI" required>
-        <input type="date" class="inp col-sm-2" placeholder="date" [(ngModel)]="CDateI">
-        <button class=" col-sm-2 btn btn-primary" mat-mini-fab (click)="addTrade()">add</button>
+      <div class="input-group">
+        <input type="text" class="form-control col-sm-2" placeholder="Coin name" [(ngModel)]="CnameI" required>
+        <input type="number" class="form-control col-sm-2" placeholder="  Amount" [(ngModel)]="CQuantI" required>
+        <input type="number" class="col-sm-2 form-control" placeholder="  Invested money" [(ngModel)]="CInvestedMoneyI" required>
+        <input type="datetime-local" class="col-sm-2 form-control" [(ngModel)]="CDateI">
+        <button class="btn btn-success" mat-mini-fab (click)="addTrade()">+</button>
+      </div>
     </div>
   </div>
   <div class="row charts">
@@ -46,7 +47,7 @@
       <button mat-mini-fab color="primary">
         <mat-icon>edit</mat-icon>
       </button>
-    <button mat-mini-fab color="warn" (click)="deleteRecord(trade.coinName,trade.quantity,trade.date,trade.priceusd)">
+    <button mat-mini-fab color="warn" (click)="deleteRecord(trade.coinName,trade.quantity,trade.date)">
       	<mat-icon>remove_circle_outline</mat-icon>
     </button>
     </span>
