@@ -1,6 +1,6 @@
 import {Component,Input} from '@angular/core';
 import {Observable} from "rxjs";
-import {Record} from "../dashboard.component";
+import {TradeModel} from "../../models/trade-model";
 
 @Component({
   selector: 'app-main',
@@ -8,9 +8,9 @@ import {Record} from "../dashboard.component";
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent{
-  @Input() trades: any[];
   @Input() maxTradeDate: any;
   @Input() minTradeDate: any;
   @Input() sumInvested$: Observable<number>;
-  @Input() trades$: Observable<Record[]>;
+  @Input() trades$: Observable<TradeModel[]>;
+  @Input() actualPirce: number;
 }

@@ -1,43 +1,37 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {combineLatest, map, Observable} from 'rxjs';
+import {TradeModel} from "../models/trade-model";
 import axios from "axios";
 
-export interface Record{
-  coinName:string,
-  quantity:number,
-  priceusd:number,
-  investedInUSD:number;
-  date: string;
-}
 @Component({
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  tradesAr: any[];
   maxDate: any;
   minDate: any;
   totalInvested$: Observable<number>;
-  records$: Observable<Record[]>;
+  records$: Observable<TradeModel[]>;
   coinNames: string[];
+  actual: number;
+  profit$ : Observable<number>;
   constructor(private db: AngularFirestore) {
     this.getMinDate();
     this.getMaxDate();
     this.sumInvestedMoney();
-    this.db.collection<Record>('trades').get().subscribe(querySnapshot => {
+    this.db.collection<TradeModel>('trades').get().subscribe(querySnapshot => {
       const names: any[] = querySnapshot.docs.map(doc => doc.data().coinName);
       console.log(names.join(','));
       this.getCurrentPrices();
     });
+    this.profit$ = combineLatest([this.totalInvested$]).pipe(
+      map(([totalInvested$])=> this.actual/totalInvested$));
   }
 
   ngOnInit() {
-    this.db.collection('trades').valueChanges().subscribe(trades => {
-      this.tradesAr = trades;
-      console.log(trades);
-    });
+
   }
   getMaxDate(){
     this.db.collection('trades', ref => ref
@@ -60,13 +54,13 @@ export class DashboardComponent implements OnInit {
     }).catch(error => {console.log(error)});
   }
   sumInvestedMoney(){
-    this.totalInvested$ = this.db.collection<Record>('trades').valueChanges()
+    this.totalInvested$ = this.db.collection<TradeModel>('trades').valueChanges()
       .pipe(
         map(data => data.reduce((acc, curr) => acc + curr.investedInUSD, 0))
       );
   }
   getCurrentPrices(){
-    this.records$ = this.db.collection<Record>('trades').valueChanges();
+    this.records$ = this.db.collection<TradeModel>('trades').valueChanges();
     this.records$ = combineLatest([
       this.records$, axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,dogecoin&vs_currencies=usd')
         .then(response => response.data)
@@ -74,6 +68,7 @@ export class DashboardComponent implements OnInit {
       map(([records, prices]) => {
         return records.map(record => {
           record.priceusd = prices[record.coinName.toLowerCase()].usd;
+          this.actual+=(record.priceusd*record.quantity);
           return record;
         });
       })
