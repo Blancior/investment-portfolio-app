@@ -1,4 +1,4 @@
-import {Component,OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {combineLatest, map, Observable} from "rxjs";
 import {TradeModel} from "../../models/trade-model";

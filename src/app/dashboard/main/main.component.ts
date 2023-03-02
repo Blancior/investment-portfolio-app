@@ -12,5 +12,5 @@ export class MainComponent{
   @Input() minTradeDate: any;
   @Input() sumInvested$: Observable<number>;
   @Input() trades$: Observable<TradeModel[]>;
-  @Input() actualPirce: number;
+  @Input() actualPrice: number;
 }

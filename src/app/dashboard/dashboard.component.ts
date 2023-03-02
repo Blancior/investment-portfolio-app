@@ -10,28 +10,40 @@ import axios from "axios";
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  visibleSecond:boolean=false;
   maxDate: any;
   minDate: any;
   totalInvested$: Observable<number>;
   records$: Observable<TradeModel[]>;
-  coinNames: string[];
-  actual: number;
+  coinNames: string[]=[];
   profit$ : Observable<number>;
+  actual: number=280;
   constructor(private db: AngularFirestore) {
     this.getMinDate();
     this.getMaxDate();
     this.sumInvestedMoney();
     this.db.collection<TradeModel>('trades').get().subscribe(querySnapshot => {
-      const names: any[] = querySnapshot.docs.map(doc => doc.data().coinName);
+      const names: string[] = querySnapshot.docs.map(doc => doc.data().coinName);
       console.log(names.join(','));
       this.getCurrentPrices();
+      this.profit$ = combineLatest([this.totalInvested$]).pipe(
+        map(([totalInvested$]) => (this.actual/totalInvested$)
+        ));
     });
-    this.profit$ = combineLatest([this.totalInvested$]).pipe(
-      map(([totalInvested$])=> this.actual/totalInvested$));
+
+    this.db.collection('trades').valueChanges().pipe(
+      map((trades: any[]) => trades.map((trade) => trade.coinName)),
+    ).subscribe((coinNames: string[]) => {
+      coinNames.forEach((coinName) => {
+        if (!this.coinNames.includes(coinName)) {
+          this.coinNames.push(coinName);
+        }
+        this.coinNames.join(",")
+      });
+    }); //wrzucanie nazw coinow do tablicy
   }
 
   ngOnInit() {
-
   }
   getMaxDate(){
     this.db.collection('trades', ref => ref
@@ -51,7 +63,7 @@ export class DashboardComponent implements OnInit {
         const data = doc.data() as { date: string};
         this.minDate = data.date;
       });
-    }).catch(error => {console.log(error)});
+    }).catch(error => {console.error(error)});
   }
   sumInvestedMoney(){
     this.totalInvested$ = this.db.collection<TradeModel>('trades').valueChanges()
@@ -60,15 +72,19 @@ export class DashboardComponent implements OnInit {
       );
   }
   getCurrentPrices(){
+    let actual1:number=0;
+    let coins = this.coinNames;
     this.records$ = this.db.collection<TradeModel>('trades').valueChanges();
     this.records$ = combineLatest([
-      this.records$, axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,dogecoin&vs_currencies=usd')
+      this.records$, axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ripple,dogecoin,ethereum&vs_currencies=usd')
         .then(response => response.data)
     ]).pipe(
       map(([records, prices]) => {
         return records.map(record => {
           record.priceusd = prices[record.coinName.toLowerCase()].usd;
-          this.actual+=(record.priceusd*record.quantity);
+          actual1+=(record.priceusd*record.quantity);
+          console.log(this.actual);
+          this.actual= actual1;
           return record;
         });
       })
