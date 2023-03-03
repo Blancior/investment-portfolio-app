@@ -52,10 +52,11 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
         AngularFirestoreModule,
         MatButtonModule,
         MatInputModule,
-      MatDialogModule
+      MatDialogModule,
     ],
   providers: [
     MatDialog,
+    DashboardComponent,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: MAT_DIALOG_GLOBAL_CONFIG}
   ],
   bootstrap: [AppComponent]

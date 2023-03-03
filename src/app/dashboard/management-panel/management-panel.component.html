@@ -8,7 +8,7 @@
               <input type="text" class="form-control col-sm-2" placeholder="Coin name" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>
             </div>
             <div class="col">
-              <input type="number" class="form-control col-sm-2" placeholder="  Amount" [(ngModel)]="CQuantI"  [ngModelOptions]="{standalone: true}"required>
+              <input type="number" class="form-control col-sm-2" placeholder="  Amount" [(ngModel)]="CQuantI"  [ngModelOptions]="{standalone: true}" required>
             </div>
             <div class="col">
               <input type="number" class="col-sm-2 form-control" placeholder="  Invested money" [(ngModel)]="CInvestedMoneyI" [ngModelOptions]="{standalone: true}" required>
@@ -30,7 +30,7 @@
     <div class="info">
       <div class="col-sm-3 totalValue">CurrenttotalValue($)</div>
       <div class="col-sm-3 firstTrade">firstTrade Date</div>
-      <div class="col-sm-3 totalInvestments">totalInvestments($) {{sumInvested$ | async}}</div>
+      <div class="col-sm-3 totalInvestments">totalInvestments($) {{parent.totalInvested$ | async}}</div>
       <div class="col-sm-3 tradeQuantity">ilosc tradeow</div>
     </div>
   </div>
@@ -46,7 +46,7 @@
     <p> date of bought</p>
     <p> action</p>
   </div>
-  <ul class="trade col" *ngFor="let trade of trades$ | async; let i = index">
+  <ul class="trade col" *ngFor="let trade of parent.records$ | async; let i = index">
     <li>{{i+1}}</li>
     <li>{{trade.coinName.toUpperCase()}}</li>
     <li>{{(trade.priceusd*trade.quantity).toFixed(3)}}</li>

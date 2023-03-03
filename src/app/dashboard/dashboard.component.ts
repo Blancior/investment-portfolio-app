@@ -10,7 +10,6 @@ import axios from "axios";
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  visibleSecond:boolean=false;
   maxDate: any;
   minDate: any;
   totalInvested$: Observable<number>;
@@ -45,6 +44,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
+  getTrades(): Observable<TradeModel[]>{
+    return this.db.collection<TradeModel>('trades').snapshotChanges().pipe(map(res => res.map(trade => this.assignKey(trade))));
+  }
+  assignKey(trade: any){
+    return {...trade.payload.val(),key: trade.key}
+  }
   getMaxDate(){
     this.db.collection('trades', ref => ref
       .orderBy('date', 'desc')
@@ -73,7 +78,6 @@ export class DashboardComponent implements OnInit {
   }
   getCurrentPrices(){
     let actual1:number=0;
-    let coins = this.coinNames;
     this.records$ = this.db.collection<TradeModel>('trades').valueChanges();
     this.records$ = combineLatest([
       this.records$, axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ripple,dogecoin,ethereum&vs_currencies=usd')
