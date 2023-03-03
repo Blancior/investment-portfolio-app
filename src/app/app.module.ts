@@ -17,6 +17,16 @@ import { MainComponent } from './dashboard/main/main.component';
 import { ManagementPanelComponent } from './dashboard/management-panel/management-panel.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
+import { EditTradeComponent } from './trade/edit-trade/edit-trade.component';
+import { TradeDetailsComponent } from './trade/trade-details/trade-details.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogConfig, MatDialogModule} from "@angular/material/dialog";
+
+const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
+  width:'700px',
+  disableClose: true,
+  hasBackdrop: true,
+
+}
 
 @NgModule({
   declarations: [
@@ -25,6 +35,8 @@ import {MatInputModule} from "@angular/material/input";
     AssetComponent,
     MainComponent,
     ManagementPanelComponent,
+    EditTradeComponent,
+    TradeDetailsComponent,
   ],
     imports: [
         BrowserModule,
@@ -40,8 +52,12 @@ import {MatInputModule} from "@angular/material/input";
         AngularFirestoreModule,
         MatButtonModule,
         MatInputModule,
+      MatDialogModule
     ],
-  providers: [],
+  providers: [
+    MatDialog,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: MAT_DIALOG_GLOBAL_CONFIG}
+  ],
   bootstrap: [AppComponent]
 })
 
