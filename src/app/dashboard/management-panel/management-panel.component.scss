@@ -27,7 +27,12 @@
 }
 input{
   border-radius: 25px;
-  width: 150px;
+  width: clamp(150px,250px,300px);
+}
+.lastInput{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 50px;
 }
 
 

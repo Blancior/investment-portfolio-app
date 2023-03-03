@@ -3,6 +3,8 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {combineLatest, map, Observable} from "rxjs";
 import {TradeModel} from "../../models/trade-model";
 import axios from "axios";
+import { MatDialog} from "@angular/material/dialog";
+import {TradeDetailsComponent} from "../../trade/trade-details/trade-details.component";
 
 @Component({
   selector: 'management-panel',
@@ -17,7 +19,11 @@ export class ManagementPanelComponent implements OnInit{
   CQuantI:number;
   CInvestedMoneyI:number;
   CDateI:string = new Date().toISOString().slice(0,19);
-  constructor(private db: AngularFirestore) {
+  constructor(
+    private db: AngularFirestore,
+    private dialog: MatDialog,
+  ) {
+    this.getTrades();
     this.db.collection<TradeModel>('trades').get().subscribe(querySnapshot => {
       const names: any[] = querySnapshot.docs.map(doc => doc.data().coinName);
       console.log(names.join(','));
@@ -26,9 +32,12 @@ export class ManagementPanelComponent implements OnInit{
     this.sumInvestedMoney();
   }
   ngOnInit() {
-    // setInterval(() => {
-    //   this.CDateI = new Date().toString();
-    // },1000);
+  }
+  getTrades(): Observable<TradeModel[]>{
+   return this.db.collection<TradeModel>('trades').snapshotChanges().pipe(map(res => res.map(trade => this.assignKey(trade))));
+  }
+  assignKey(trade: any){
+    return {...trade.payload.val(),key: trade.key}
   }
   addTrade(){
     this.CDateI= new Date().toISOString().slice(0,19);
@@ -70,5 +79,8 @@ export class ManagementPanelComponent implements OnInit{
         });
       })
     );
+  }
+  goToEdit(trade: any){
+    this.dialog.open(TradeDetailsComponent,{data: trade});
   }
 }

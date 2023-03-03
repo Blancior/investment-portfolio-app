@@ -2,13 +2,23 @@
   <div class="row">
     <p class="text-center">Import your trade below:</p>
     <div class="trade row input-list">
-      <div class="input-group">
-        <input type="text" class="form-control col-sm-2" placeholder="Coin name" [(ngModel)]="CnameI" required>
-        <input type="number" class="form-control col-sm-2" placeholder="  Amount" [(ngModel)]="CQuantI" required>
-        <input type="number" class="col-sm-2 form-control" placeholder="  Invested money" [(ngModel)]="CInvestedMoneyI" required>
-        <input type="datetime-local" class="col-sm-2 form-control" [(ngModel)]="CDateI">
-        <button class="btn btn-success" mat-fab (click)="addTrade()">+</button>
-      </div>
+        <form>
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control col-sm-2" placeholder="Coin name" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>
+            </div>
+            <div class="col">
+              <input type="number" class="form-control col-sm-2" placeholder="  Amount" [(ngModel)]="CQuantI"  [ngModelOptions]="{standalone: true}"required>
+            </div>
+            <div class="col">
+              <input type="number" class="col-sm-2 form-control" placeholder="  Invested money" [(ngModel)]="CInvestedMoneyI" [ngModelOptions]="{standalone: true}" required>
+            </div>
+            <div class="col lastInput">
+              <input type="datetime-local" class="col-sm-2 form-control" [(ngModel)]="CDateI" [ngModelOptions]="{standalone: true}">
+            </div>
+            <button class="btn btn-success" mat-raised-button (click)="addTrade()"><b>Enter Trade</b></button>
+          </div>
+        </form>
     </div>
   </div>
   <div class="row charts">
@@ -44,7 +54,7 @@
     <li>{{trade.quantity}}</li>
     <li>{{trade.date | date: 'dd-MM-yyyy'}}</li>
     <span class="button-group">
-      <button mat-mini-fab color="primary">
+      <button mat-mini-fab color="primary" (click)="goToEdit(trade)">
         <mat-icon>edit</mat-icon>
       </button>
     <button mat-mini-fab color="warn" (click)="deleteRecord(trade.coinName,trade.quantity,trade.date)">
