@@ -20,12 +20,6 @@ export class DashboardComponent implements OnInit {
     this.getMinDate();
     this.getMaxDate();
     this.sumInvestedMoney();
-    this.db.collection<TradeModel>('trades').get().subscribe(querySnapshot => {
-      const names: string[] = querySnapshot.docs.map(doc => doc.data().coinName);
-      console.log(names.join(','));
-      this.getCurrentPrices();
-    });
-
     this.db.collection('trades').valueChanges().pipe(
       map((trades: any[]) => trades.map((trade) => trade.coinName)),
     ).subscribe((coinNames: string[]) => {
@@ -33,12 +27,20 @@ export class DashboardComponent implements OnInit {
         if (!this.coinNames.includes(coinName)) {
           this.coinNames.push(coinName);
         }
-        this.coinNames.join(",")
       });
+      this.coinNames=Array.from(new Set(this.coinNames));
+      console.log()
     }); //wrzucanie nazw coinow do tablicy
+
+    this.db.collection<TradeModel>('trades').get().subscribe(querySnapshot => {
+      this.getCurrentPrices();
+    });
+
   }
 
+
   ngOnInit() {
+
   }
 
   getTrades(): Observable<TradeModel[]>{
@@ -79,10 +81,11 @@ export class DashboardComponent implements OnInit {
       .subscribe((sum) => (this.totalInv = sum));
   }
   getCurrentPrices(){
+;
     let actual1:number=0;
     this.records$ = this.db.collection<TradeModel>('trades').valueChanges();
     this.records$ = combineLatest([
-      this.records$, axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ripple,dogecoin,ethereum&vs_currencies=usd')
+      this.records$, axios.get('https://api.coingecko.com/api/v3/simple/price?ids='+this.coinNames.toString()+'&vs_currencies=usd')
         .then(response => response.data)
     ]).pipe(
       map(([records, prices]) => {
