@@ -5,16 +5,16 @@
         <form>
           <div class="row">
             <div class="col">
-              <input type="text" class="form-control col-sm-2" placeholder="Coin name" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>
+              <input type="text" class="form-control" placeholder="Coin name" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>
             </div>
             <div class="col">
-              <input type="number" class="form-control col-sm-2" placeholder="  Amount" [(ngModel)]="CQuantI"  [ngModelOptions]="{standalone: true}" required>
+              <input type="number" class="form-control" placeholder="  Amount" [(ngModel)]="CQuantI"  [ngModelOptions]="{standalone: true}" required>
             </div>
             <div class="col">
-              <input type="number" class="col-sm-2 form-control" placeholder="  Invested money" [(ngModel)]="CInvestedMoneyI" [ngModelOptions]="{standalone: true}" required>
+              <input type="number" class="form-control" placeholder="  Invested money" [(ngModel)]="CInvestedMoneyI" [ngModelOptions]="{standalone: true}" required>
             </div>
             <div class="col lastInput">
-              <input type="datetime-local" class="col-sm-2 form-control" [(ngModel)]="CDateI" [ngModelOptions]="{standalone: true}">
+              <input type="datetime-local" class="form-control" [(ngModel)]="CDateI" [ngModelOptions]="{standalone: true}">
             </div>
             <button class="btn btn-success" mat-raised-button (click)="addTrade()"><b>Enter Trade</b></button>
           </div>
@@ -30,7 +30,7 @@
     <div class="info">
       <div class="col-sm-3 totalValue">CurrenttotalValue($)</div>
       <div class="col-sm-3 firstTrade">firstTrade Date</div>
-      <div class="col-sm-3 totalInvestments">totalInvestments($) {{parent.totalInvested$ | async}}</div>
+      <div class="col-sm-3 totalInvestments">totalInvestments($) {{parent.totalInv}}</div>
       <div class="col-sm-3 tradeQuantity">ilosc tradeow</div>
     </div>
   </div>

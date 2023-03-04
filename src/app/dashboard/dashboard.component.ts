@@ -12,11 +12,10 @@ import axios from "axios";
 export class DashboardComponent implements OnInit {
   maxDate: any;
   minDate: any;
-  totalInvested$: Observable<number>;
   records$: Observable<TradeModel[]>;
   coinNames: string[]=[];
-  profit$ : Observable<number>;
-  actual: number=280;
+  actual: number;
+  totalInv:number;
   constructor(private db: AngularFirestore) {
     this.getMinDate();
     this.getMaxDate();
@@ -25,9 +24,6 @@ export class DashboardComponent implements OnInit {
       const names: string[] = querySnapshot.docs.map(doc => doc.data().coinName);
       console.log(names.join(','));
       this.getCurrentPrices();
-      this.profit$ = combineLatest([this.totalInvested$]).pipe(
-        map(([totalInvested$]) => (this.actual/totalInvested$)
-        ));
     });
 
     this.db.collection('trades').valueChanges().pipe(
@@ -44,9 +40,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
+
   getTrades(): Observable<TradeModel[]>{
     return this.db.collection<TradeModel>('trades').snapshotChanges().pipe(map(res => res.map(trade => this.assignKey(trade))));
   }
+
   assignKey(trade: any){
     return {...trade.payload.val(),key: trade.key}
   }
@@ -71,10 +69,14 @@ export class DashboardComponent implements OnInit {
     }).catch(error => {console.error(error)});
   }
   sumInvestedMoney(){
-    this.totalInvested$ = this.db.collection<TradeModel>('trades').valueChanges()
+    this.db
+      .collection<TradeModel>('trades')
+      .snapshotChanges()
       .pipe(
-        map(data => data.reduce((acc, curr) => acc + curr.investedInUSD, 0))
-      );
+        map((changes) => changes.map((c) => c.payload.doc.data().investedInUSD)),
+        map((params) => params.reduce((prev, curr) => prev + curr, 0))
+      )
+      .subscribe((sum) => (this.totalInv = sum));
   }
   getCurrentPrices(){
     let actual1:number=0;
@@ -87,8 +89,7 @@ export class DashboardComponent implements OnInit {
         return records.map(record => {
           record.priceusd = prices[record.coinName.toLowerCase()].usd;
           actual1+=(record.priceusd*record.quantity);
-          console.log(this.actual);
-          this.actual= actual1;
+          this.actual = Number.parseFloat(actual1.toFixed(2));
           return record;
         });
       })
