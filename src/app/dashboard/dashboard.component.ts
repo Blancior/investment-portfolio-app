@@ -29,10 +29,8 @@ export class DashboardComponent implements OnInit {
         }
       });
       this.coinNames=Array.from(new Set(this.coinNames));
-      console.log()
     }); //wrzucanie nazw coinow do tablicy
-
-    this.db.collection<TradeModel>('trades').get().subscribe(querySnapshot => {
+    this.db.collection<TradeModel>('trades').get().subscribe(() => {
       this.getCurrentPrices();
     });
 
@@ -81,7 +79,6 @@ export class DashboardComponent implements OnInit {
       .subscribe((sum) => (this.totalInv = sum));
   }
   getCurrentPrices(){
-;
     let actual1:number=0;
     this.records$ = this.db.collection<TradeModel>('trades').valueChanges();
     this.records$ = combineLatest([
