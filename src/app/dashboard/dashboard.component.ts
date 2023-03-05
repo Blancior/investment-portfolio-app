@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {combineLatest, map, Observable} from 'rxjs';
 import {TradeModel} from "../models/trade-model";
@@ -9,7 +9,7 @@ import axios from "axios";
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent{
   maxDate: any;
   minDate: any;
   records$: Observable<TradeModel[]>;
@@ -33,12 +33,7 @@ export class DashboardComponent implements OnInit {
     this.db.collection<TradeModel>('trades').get().subscribe(() => {
       this.getCurrentPrices();
     });
-
-  }
-
-
-  ngOnInit() {
-
+    // this.getCoins();
   }
 
   getTrades(): Observable<TradeModel[]>{
@@ -95,4 +90,15 @@ export class DashboardComponent implements OnInit {
       })
     );
   }
+  // getCoins() {
+  //   const availableCoins:string[]=[];
+  //   axios.get('https://api.coingecko.com/api/v3/coins/list').then(response => {
+  //     const coins = response.data.map(coin => coin.name);
+  //     availableCoins.push(coins);
+  //     console.log("availa"+coins.toString());
+  //       const fixedCoins = availableCoins.map(coin => coin.replace(/\s+/g,'-'));
+  //       console.log("availa"+fixedCoins);
+  //   })
+  //     .catch(error => console.error(error));
+  // } poprawic
 }

@@ -4,9 +4,19 @@
     <div class="trade row input-list">
         <form>
           <div class="row">
+<!--            <div class="col">-->
+<!--&lt;!&ndash;              <input type="text" class="form-control" placeholder="Coin name" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>&ndash;&gt;-->
+<!--            </div>-->
             <div class="col">
-              <input type="text" class="form-control" placeholder="Coin name" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>
+                <select class="form-select" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}"  required>
+                  <option selected disabled>Select coin</option>
+                  <option *ngFor="let coin of parent.coinNames" [value]=coin>
+                    {{coin.toUpperCase()}}
+                  </option>
+                </select>
+
             </div>
+            {{CnameI}}
             <div class="col">
               <input type="number" class="form-control" placeholder="  Amount" [(ngModel)]="CQuantI"  [ngModelOptions]="{standalone: true}" required>
             </div>

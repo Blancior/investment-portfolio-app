@@ -20,6 +20,7 @@ import {MatInputModule} from "@angular/material/input";
 import { EditTradeComponent } from './trade/edit-trade/edit-trade.component';
 import { TradeDetailsComponent } from './trade/trade-details/trade-details.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogConfig, MatDialogModule} from "@angular/material/dialog";
+import {MatSelectModule} from "@angular/material/select";
 
 const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
   width:'700px',
@@ -52,7 +53,8 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
         AngularFirestoreModule,
         MatButtonModule,
         MatInputModule,
-      MatDialogModule,
+        MatDialogModule,
+        MatSelectModule,
     ],
   providers: [
     MatDialog,
