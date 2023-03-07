@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {TradeModel} from "../../models/trade-model";
 import { MatDialog} from "@angular/material/dialog";
@@ -10,7 +10,7 @@ import {DashboardComponent} from "../dashboard.component";
   templateUrl: 'management-panel.component.html',
   styleUrls: ['./management-panel.component.scss', '../main/main.component.scss']
 })
-export class ManagementPanelComponent implements OnInit{
+export class ManagementPanelComponent{
 
   CnameI:string;
   CQuantI:number;
@@ -24,12 +24,9 @@ export class ManagementPanelComponent implements OnInit{
     this.parent.getTrades();
     this.db.collection<TradeModel>('trades').get().subscribe(querySnapshot => {
       const names: any[] = querySnapshot.docs.map(doc => doc.data().coinName);
-      console.log(names.join(','));
       this.parent.getCurrentPrices();
     });
     this.parent.sumInvestedMoney();
-  }
-  ngOnInit() {
   }
 
   addTrade(){
@@ -56,4 +53,5 @@ export class ManagementPanelComponent implements OnInit{
   goToEdit(trade: any){
     this.dialog.open(TradeDetailsComponent,{data: trade});
   }
+
 }

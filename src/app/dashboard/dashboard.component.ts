@@ -4,6 +4,7 @@ import {combineLatest, map, Observable} from 'rxjs';
 import {TradeModel} from "../models/trade-model";
 import axios from "axios";
 
+
 @Component({
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,9 +15,20 @@ export class DashboardComponent{
   minDate: any;
   records$: Observable<TradeModel[]>;
   coinNames: string[]=[];
+  coinNames2: string[]=[];
   actual: number;
   totalInv:number;
-  constructor(private db: AngularFirestore) {
+  numberOfTrades:number;
+  coinNames1: string[]=[
+    'bitcoin','ethereum','ripple','dogecoin','cardano','binancecoin','solana','polygon','polkadot','litecoin','tron','shiba-inu','dai','avalanche','uniswap','chainlink','wrapped-bitcoin',
+    'cosmos','unus-sed-leo','toncoin','monero','ethereum-classic','okb','bitcoin-cash','lido-dao','stellar','filecoin','aptos','cronos','hedera','near-protocol','vechain','apecoin',
+    'internet-computer','algorand','quant','eos','the-graph','fantom','decentraland','bitdao','aave','multiversx','flow','tezos','theta-network','axie-infinity','stacks','immutablex',
+    'the-sandbox','maker','kucoin-token','terra-classic','neo','chiliz','huobi-token','optimism','synthetix','bitcoin-sv','dash','pancakeswap','iota','gmx','gatetoken','enjin-coin',
+    'flare','zilliqa','1inch-network','osmosis','floki','dydx','terra','compound','woo-network','link','gala'
+  ];
+  constructor(
+    private db: AngularFirestore
+  ) {
     this.getMinDate();
     this.getMaxDate();
     this.sumInvestedMoney();
@@ -33,7 +45,8 @@ export class DashboardComponent{
     this.db.collection<TradeModel>('trades').get().subscribe(() => {
       this.getCurrentPrices();
     });
-    // this.getCoins();
+     this.getNumberOfTrades();
+
   }
 
   getTrades(): Observable<TradeModel[]>{
@@ -45,7 +58,7 @@ export class DashboardComponent{
   }
   getMaxDate(){
     this.db.collection('trades', ref => ref
-      .orderBy('date', 'desc')
+      .orderBy('date', 'asc')
       .limit(1)
     ).get().toPromise().then(querySnapshot => {
       querySnapshot.forEach(doc => {
@@ -55,7 +68,7 @@ export class DashboardComponent{
     });
   }
   getMinDate(){
-    this.db.collection('trades', ref => ref.orderBy('date',"asc").limit(1)
+    this.db.collection('trades', ref => ref.orderBy('date',"desc").limit(1)
     ).get().toPromise().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         const data = doc.data() as { date: string};
@@ -77,7 +90,7 @@ export class DashboardComponent{
     let actual1:number=0;
     this.records$ = this.db.collection<TradeModel>('trades').valueChanges();
     this.records$ = combineLatest([
-      this.records$, axios.get('https://api.coingecko.com/api/v3/simple/price?ids='+this.coinNames.toString()+'&vs_currencies=usd')
+      this.records$, axios.get('https://api.coingecko.com/api/v3/simple/price?ids='+this.coinNames1.toString()+'&vs_currencies=usd')
         .then(response => response.data)
     ]).pipe(
       map(([records, prices]) => {
@@ -90,15 +103,9 @@ export class DashboardComponent{
       })
     );
   }
-  // getCoins() {
-  //   const availableCoins:string[]=[];
-  //   axios.get('https://api.coingecko.com/api/v3/coins/list').then(response => {
-  //     const coins = response.data.map(coin => coin.name);
-  //     availableCoins.push(coins);
-  //     console.log("availa"+coins.toString());
-  //       const fixedCoins = availableCoins.map(coin => coin.replace(/\s+/g,'-'));
-  //       console.log("availa"+fixedCoins);
-  //   })
-  //     .catch(error => console.error(error));
-  // } poprawic
+  getNumberOfTrades(){
+    this.db.collection('trades').get().toPromise().then(snapshot => {
+      this.numberOfTrades = snapshot.size;
+    })
+  }
 }

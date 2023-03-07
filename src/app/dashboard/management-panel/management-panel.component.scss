@@ -29,13 +29,15 @@ input{
   border-radius: 25px;
   width: clamp(150px,250px,300px);
 }
-.lastInput{
-  display: flex;
-  justify-content: space-between;
-  margin-right: 50px;
-}
 .btn:hover{
   background-color: green;
   color: white;
+}
+.form-col{
+  display: flex;
+  flex-direction: column;
+}
+.btn{
+  width: 300px;
 }
 

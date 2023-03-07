@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Observable} from "rxjs";
 import {TradeModel} from "../../models/trade-model";
+import {DashboardComponent} from "../dashboard.component";
 
 @Component({
   selector: 'app-main',
@@ -8,6 +9,9 @@ import {TradeModel} from "../../models/trade-model";
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent{
+  constructor(public dashboard: DashboardComponent) {
+    dashboard.numberOfTrades;
+  }
   @Input() maxTradeDate: any;
   @Input() minTradeDate: any;
   @Input() sumInv: number;
