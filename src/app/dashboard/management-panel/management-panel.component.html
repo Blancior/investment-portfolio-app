@@ -4,18 +4,18 @@
     <div class="trade row input-list">
         <form>
           <div class="row">
-            <div class="col form-col">
-              <label>Coin name</label>
-              <input type="text" class="form-control" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>
-            </div>
 <!--            <div class="col form-col">-->
-<!--              <label>Asset Name</label>-->
-<!--                <select class="form-select" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}"  required>-->
-<!--                  <option *ngFor="let coin of parent.coinNames" [value]=coin>-->
-<!--                    {{coin.toUpperCase()}}-->
-<!--                  </option>-->
-<!--                </select>-->
+<!--              <label>Coin name</label>-->
+<!--              <input type="text" class="form-control" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>-->
 <!--            </div>-->
+            <div class="col form-col">
+              <label>Asset Name</label>
+                <select class="form-select" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}"  required>
+                  <option *ngFor="let coin of dashboard.coinNames1" [value]=coin>
+                    {{coin.toUpperCase()}}
+                  </option>
+                </select>
+            </div>
             <div class="col form-col">
               <label>Amount</label>
               <input type="number" class="form-control" [(ngModel)]="CQuantI"  [ngModelOptions]="{standalone: true}" required>
@@ -43,8 +43,8 @@
   <div class="row">
     <div class="info">
       <div class="col-sm-3 totalValue">CurrenttotalValue($)</div>
-      <div class="col-sm-3 firstTrade">firstTrade {{parent.minDate | date: 'dd-MM-YYYY HH:MM'}}</div>
-      <div class="col-sm-3 totalInvestments">totalInvestments($) {{parent.totalInv}}</div>
+      <div class="col-sm-3 firstTrade">firstTrade {{dashboard.minDate | date: 'dd-MM-YYYY HH:MM'}}</div>
+      <div class="col-sm-3 totalInvestments">totalInvestments($) {{dashboard.totalInv}}</div>
       <div class="col-sm-3 tradeQuantity">ilosc tradeow</div>
     </div>
   </div>
@@ -60,7 +60,7 @@
     <p> date of bought</p>
     <p> action</p>
   </div>
-  <ul class="trade col" *ngFor="let trade of parent.records$ | async; let i = index">
+  <ul class="trade col" *ngFor="let trade of dashboard.records$ | async; let i = index">
     <li>{{i+1}}</li>
     <li>{{trade.coinName.toUpperCase()}}</li>
     <li>{{(trade.priceusd*trade.quantity).toFixed(3)}}</li>
@@ -68,10 +68,10 @@
     <li>{{trade.quantity}}</li>
     <li>{{trade.date | date: 'dd-MM-yyyy'}}</li>
     <span class="button-group">
-      <button mat-mini-fab color="primary" (click)="goToEdit(trade)">
-        <mat-icon>edit</mat-icon>
-      </button>
-    <button mat-mini-fab color="warn" (click)="deleteRecord(trade.coinName,trade.quantity,trade.date)">
+<!--      <button mat-mini-fab color="primary" (click)="goToDelete(trade)">-->
+<!--        <mat-icon>edit</mat-icon>-->
+<!--      </button>-->
+    <button mat-mini-fab color="warn" (click)="goToDelete(trade)">
       	<mat-icon>remove_circle_outline</mat-icon>
     </button>
     </span>

@@ -13,7 +13,6 @@
   @extend .fullCenter;
   border: 2px solid red;
   min-height: 50px;
-  padding: 10px;
   margin: 5px;
 }
 .container{
@@ -35,11 +34,13 @@ li{
   text-align: center;
 }
 .trade{
+  @extend .fullCenter;
+  align-items: center;
   justify-content: space-between;
-  margin: 10px 20px;
-  align-items: baseline;
+  margin: 20px;
 }
 .trade >li{
+  @extend .fullCenter;
   border: 1px solid green;
   width: clamp(50px,100px,100px);
   text-align: center;

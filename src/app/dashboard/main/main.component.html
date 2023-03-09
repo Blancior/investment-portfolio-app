@@ -5,7 +5,7 @@
     <div class="col-sm-4 totalInvestments">totalInvestments  {{sumInv}}</div>
   </div><div class="row">
     <div class="col-sm-4 profit" id="profit" [ngStyle]="{'color':(actualPrice/sumInv)>1 ? 'green' : 'red' }">profit/loss
-      {{((actualPrice/sumInv)*100)>100 ? ((actualPrice/sumInv)*100-100).toFixed(2) : ((sumInv/actualPrice)*100-100).toFixed(2)}}%</div>
+      {{((actualPrice/sumInv)*100)>100 ? +((actualPrice/sumInv)*100-100).toFixed(2) : -((sumInv/actualPrice)*100-100).toFixed(2)}}%</div>
     <div class="col-sm-4 lastTrade">lastTrade Date {{maxTradeDate}}</div>
     <div class="col-sm-4" id="currentBalance">na te chwile: {{actualPrice}}</div>
   </div>

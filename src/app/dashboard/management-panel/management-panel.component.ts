@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {TradeModel} from "../../models/trade-model";
 import { MatDialog} from "@angular/material/dialog";
-import {TradeDetailsComponent} from "../../trade/trade-details/trade-details.component";
 import {DashboardComponent} from "../dashboard.component";
+import {TradeDialogComponent} from "../../trade/trade-dialog/trade-dialog.component";
 
 @Component({
   selector: 'management-panel',
@@ -19,14 +19,14 @@ export class ManagementPanelComponent{
   constructor(
     private db: AngularFirestore,
     private dialog: MatDialog,
-    public parent: DashboardComponent,
+    public dashboard: DashboardComponent,
   ) {
-    this.parent.getTrades();
-    this.db.collection<TradeModel>('trades').get().subscribe(querySnapshot => {
-      const names: any[] = querySnapshot.docs.map(doc => doc.data().coinName);
-      this.parent.getCurrentPrices();
+    this.dashboard.getTrades();
+    this.db.collection<TradeModel>('trades').get().subscribe(() => {
+      // const names: any[] = querySnapshot.docs.map(doc => doc.data().coinName);
+      this.dashboard.getCurrentPrices();
     });
-    this.parent.sumInvestedMoney();
+    this.dashboard.sumInvestedMoney();
   }
 
   addTrade(){
@@ -49,9 +49,10 @@ export class ManagementPanelComponent{
         doc.ref.delete();
       });
     });
+    this.dialog.closeAll();
   }
-  goToEdit(trade: any){
-    this.dialog.open(TradeDetailsComponent,{data: trade});
+  goToDelete(trade: any){
+    this.dialog.open(TradeDialogComponent,{data: trade});
   }
 
 }
