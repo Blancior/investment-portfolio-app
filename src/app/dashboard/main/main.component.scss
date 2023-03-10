@@ -23,15 +23,19 @@
   display: flex;
   justify-content: space-between;
   margin: 10px 20px;
+  border: 2px solid green;
 }
 li{
   list-style-type: none;
 }
 .descriptionList > p {
-  width: clamp(50px,100px,100px);
+  width: clamp(100px,100px,150px);
   border: 1px solid saddlebrown;
-  margin: 10px;
+  margin: 10px 0;
   text-align: center;
+}
+.descriptionList > p:first-child{
+  margin-left: 30px;
 }
 .trade{
   @extend .fullCenter;
