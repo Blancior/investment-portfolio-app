@@ -1,7 +1,6 @@
 @import "src/app/variables.scss";
-
 .row{
-  margin: 20px;
+  margin: 20px 0;
 }
 .col-sm-4{
   border: 2px solid red;
@@ -13,17 +12,15 @@
   @extend .fullCenter;
   border: 2px solid red;
   min-height: 50px;
-  margin: 5px;
 }
-.container{
+.container {
   border: 1px dotted red;
-  margin-top: 20px;
 }
 .descriptionList{
   display: flex;
   justify-content: space-between;
-  margin: 10px 20px;
   border: 2px solid green;
+  margin: 1vh 0;
 }
 li{
   list-style-type: none;
@@ -38,17 +35,17 @@ li{
   margin-left: 30px;
 }
 .trade{
-  @extend .fullCenter;
   align-items: center;
   justify-content: space-between;
-  margin: 20px;
+  border: 3px solid orange;
 }
 .trade >li{
   @extend .fullCenter;
-  border: 1px solid green;
   width: clamp(50px,100px,100px);
   text-align: center;
   list-style-type: none;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
 }
 .title1{
   @extend .fullCenter;
@@ -56,4 +53,3 @@ li{
   font-weight: bold;
   font-size: $font-size-title;
 }
-

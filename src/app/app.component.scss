@@ -13,6 +13,8 @@ li{
 }
 .sidebar{
   position: fixed;
+  z-index: 1;
+  top: 6.8vh;
   left: -200px;
   width: 200px;
   height: 100%;
@@ -83,5 +85,9 @@ label #cancel{
 #check:checked ~ section{
   margin-left: 250px;
 }
-
+@media screen and (max-width: 600px) {
+  .sidebar {
+    top: 6vh;
+  }
+}
 

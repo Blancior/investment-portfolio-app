@@ -1,53 +1,45 @@
 <div class="container">
   <div class="row">
     <p class="text-center title1">Import your trade below:</p>
-    <div class="trade row input-list">
-        <form>
-          <div class="row">
-<!--            <div class="col form-col">-->
-<!--              <label>Coin name</label>-->
-<!--              <input type="text" class="form-control" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>-->
-<!--            </div>-->
-            <div class="col form-col">
-              <label>Asset Name</label>
-                <select class="form-select" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}"  required>
-                  <option *ngFor="let coin of dashboard.coinNames1" [value]=coin>
-                    {{coin.toUpperCase()}}
-                  </option>
-                </select>
-            </div>
-            <div class="col form-col">
-              <label>Amount</label>
-              <input type="number" class="form-control" [(ngModel)]="CQuantI"  [ngModelOptions]="{standalone: true}" required>
-            </div>
-            <div class="col form-col">
-              <label>Invested money</label>
-              <input type="number" class="form-control"  [(ngModel)]="CInvestedMoneyI" [ngModelOptions]="{standalone: true}" required>
-            </div>
-            <div class="col form-col">
-              <label>Date</label>
-              <input type="datetime-local" class="form-control" [(ngModel)]="CDateI" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="col btnA">
-            <button class="btn" mat-raised-button (click)="addTrade()"><b>Enter Trade</b></button>
-          </div>
-        </form>
+    <div class="row trade">
+    <form>
+    <div class="row">
+        <!--            <div class="col form-col">-->
+        <!--              <label>Coin name</label>-->
+        <!--              <input type="text" class="form-control" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>-->
+        <!--            </div>-->
+        <div class="col form-col">
+          <label>Asset Name</label>
+          <select class="form-select" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}"  required>
+            <option *ngFor="let coin of dashboard.coinNames1" [value]=coin>
+              {{coin.toUpperCase()}}
+            </option>
+          </select>
+        </div>
+        <div class="col form-col">
+          <label>Amount</label>
+          <input type="number" class="form-control" [(ngModel)]="CQuantI"  [ngModelOptions]="{standalone: true}" required>
+        </div>
+        <div class="col form-col">
+          <label>Invested money</label>
+          <input type="number" class="form-control"  [(ngModel)]="CInvestedMoneyI" [ngModelOptions]="{standalone: true}" required>
+        </div>
+        <div class="col form-col">
+          <label>Date</label>
+          <input type="datetime-local" class="form-control" [(ngModel)]="CDateI" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+      <div class="row btnA">
+        <button class="btn" mat-raised-button (click)="addTrade()"><b>Enter Trade</b></button>
+      </div>
+    </form>
+  <div class="row info">
+      <div class="col-sm-3">CurrenttotalValue: ${{dashboard.actual}}</div>
+      <div class="col-sm-3">firstTrade {{dashboard.minDate | date: 'dd-MM-YYYY HH:MM'}}</div>
+      <div class="col-sm-3">totalInvestments($) {{dashboard.totalInv}}</div>
+      <div class="col-sm-3">ilosc tradeow: {{dashboard.numberOfTrades}}</div>
+  </div>
     </div>
-  </div>
-  <div class="row charts">
-    <div class="col-sm-4 chart1">wykres</div>
-    <div class="col-sm-4 chart1">1234</div>
-    <div class="col-sm-4 chart1">12421</div>
-  </div>
-  <div class="row">
-    <div class="info">
-      <div class="col-sm-3 totalValue">CurrenttotalValue($)</div>
-      <div class="col-sm-3 firstTrade">firstTrade {{dashboard.minDate | date: 'dd-MM-YYYY HH:MM'}}</div>
-      <div class="col-sm-3 totalInvestments">totalInvestments($) {{dashboard.totalInv}}</div>
-      <div class="col-sm-3 tradeQuantity">ilosc tradeow</div>
-    </div>
-  </div>
 </div>
 <div class="container invList">
   <p class="title1">List of trades</p>
@@ -64,16 +56,18 @@
     <li>{{i+1}}</li>
     <li>{{trade.coinName.toUpperCase()}}</li>
     <li>{{(trade.priceusd*trade.quantity).toFixed(3)}}</li>
-    <li>{{trade.priceusd}}</li>
+    <li>{{(trade.priceusd).toFixed(2)}}</li>
     <li>{{trade.quantity}}</li>
     <li>{{trade.date | date: 'dd-MM-yyyy'}}</li>
-    <span class="button-group">
+    <li id="buttonD">
 <!--      <button mat-mini-fab color="primary" (click)="goToDelete(trade)">-->
 <!--        <mat-icon>edit</mat-icon>-->
 <!--      </button>-->
     <button mat-mini-fab color="warn" (click)="goToDelete(trade)">
       	<mat-icon>remove_circle_outline</mat-icon>
     </button>
-    </span>
+    </li>
   </ul>
 </div>
+</div>
+
