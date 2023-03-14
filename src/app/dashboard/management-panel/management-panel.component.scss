@@ -6,6 +6,7 @@
   border: 2px solid turquoise;
   text-align: center;
 }
+
 .text-center{
   font-size: $font-size-title;
 }
@@ -42,6 +43,7 @@ input{
 .form-col{
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
 }
 .input-list{
   border: 3px solid orange;
@@ -49,5 +51,6 @@ input{
 #buttonD{
   border: none;
 }
+
 
 

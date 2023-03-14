@@ -1,25 +1,28 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {TradeModel} from "../../models/trade-model";
 import { MatDialog} from "@angular/material/dialog";
 import {DashboardComponent} from "../dashboard.component";
 import {TradeDialogComponent} from "../../trade/trade-dialog/trade-dialog.component";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'management-panel',
   templateUrl: 'management-panel.component.html',
   styleUrls: ['./management-panel.component.scss', '../main/main.component.scss']
 })
-export class ManagementPanelComponent{
+export class ManagementPanelComponent implements OnInit{
 
   CnameI:string;
-  CQuantI:number;
-  CInvestedMoneyI:number;
+  CQuantI:number=0;
+  CInvestedMoneyI:number=0;
   CDateI:string = new Date().toISOString().slice(0,19);
+  form1: FormGroup;
   constructor(
     private db: AngularFirestore,
     private dialog: MatDialog,
     public dashboard: DashboardComponent,
+    private formbuilder: FormBuilder
   ) {
     this.dashboard.getTrades();
     this.db.collection<TradeModel>('trades').get().subscribe(() => {
@@ -29,6 +32,9 @@ export class ManagementPanelComponent{
     this.dashboard.sumInvestedMoney();
   }
 
+  ngOnInit(): void {
+    this.buildForm();
+    }
   addTrade(){
     this.CDateI= new Date().toISOString().slice(0,19);
     const rc = this.db.collection('trades');
@@ -53,6 +59,13 @@ export class ManagementPanelComponent{
   }
   goToDelete(trade: any){
     this.dialog.open(TradeDialogComponent,{data: trade});
+  }
+  private buildForm(){
+    this.form1 = this.formbuilder.group({
+      name: ['', {validators: [Validators.required]}],
+      amount: ['', {validators: [Validators.required]}],
+      invested: ['', {validators: [Validators.required]}],
+    })
   }
 
 }
