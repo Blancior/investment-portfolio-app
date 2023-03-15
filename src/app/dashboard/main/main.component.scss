@@ -3,7 +3,12 @@
   margin: 20px 0;
 }
 .col-sm-4{
+  @extend .fullCenter;
+  align-items: center;
   border: 2px solid red;
+  font-size: 20px;
+  min-height: 50px;
+  border-radius: 25px;
 }
 .invList{
   margin-top: 20px;
@@ -13,6 +18,7 @@
   border: 2px solid red;
   min-height: 50px;
   margin-bottom: 10px;
+
 }
 .container {
   border: 1px dotted red;
