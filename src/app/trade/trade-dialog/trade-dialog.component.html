@@ -1,3 +1,13 @@
-<p>Are you sure?</p>
-<button (click)="management.deleteRecord(trade.coinName,trade.quantity,trade.date)"><mat-icon>remove_circle_outline</mat-icon></button>
-<button (click)="close()">close</button>
+<div class="container">
+  <div class="row">
+    <p>Are you sure u want to delete this trade?</p>
+  </div>
+  <div class="col button-group">
+      <button id="accept-button" (click)="management.deleteRecord(trade.coinName,trade.quantity,trade.date)">
+        <mat-icon>done</mat-icon>
+      </button>
+      <button id="cancel-button" (click)="close()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+  </div>
+</div>

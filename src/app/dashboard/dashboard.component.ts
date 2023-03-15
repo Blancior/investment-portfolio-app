@@ -20,12 +20,13 @@ export class DashboardComponent{
   totalInv:number;
   numberOfTrades:number;
   coinNames1: string[]=[
-    'bitcoin','ethereum','ripple','dogecoin','cardano','binancecoin','solana','polygon','polkadot','litecoin','tron','shiba-inu','dai','avalanche','uniswap','chainlink','wrapped-bitcoin',
-    'cosmos','unus-sed-leo','toncoin','monero','ethereum-classic','okb','bitcoin-cash','lido-dao','stellar','filecoin','aptos','cronos','hedera','near-protocol','vechain','apecoin',
-    'internet-computer','algorand','quant','eos','the-graph','fantom','decentraland','bitdao','aave','multiversx','flow','tezos','theta-network','axie-infinity','stacks','immutablex',
-    'the-sandbox','maker','kucoin-token','terra-classic','neo','chiliz','huobi-token','optimism','synthetix','bitcoin-sv','dash','pancakeswap','iota','gmx','gatetoken','enjin-coin',
-    'flare','zilliqa','1inch-network','osmosis','floki','dydx','terra','compound','woo-network','link','gala'
+    'bitcoin','ethereum','ripple','dogecoin','cardano','binancecoin','solana','polkadot','litecoin','tron','shiba-inu','dai','uniswap','chainlink','wrapped-bitcoin',
+    'cosmos','monero','algorand'
   ];
+  /*'ethereum-classic','okb','bitcoin-cash','lido-dao','stellar','filecoin','aptos','cronos','hedera','near-protocol','vechain','apecoin',
+  'internet-computer','algorand','quant','eos','the-graph','fantom','decentraland','bitdao','aave','multiversx','flow','tezos','theta-network','axie-infinity','stacks','immutablex',
+  'the-sandbox','maker','kucoin-token','terra-classic','neo','chiliz','huobi-token','optimism','synthetix','bitcoin-sv','dash','pancakeswap','iota','gmx','gatetoken','enjin-coin',
+  'flare','zilliqa','1inch-network','osmosis','floki','dydx','terra','compound','woo-network','link','gala' - check this */
   constructor(
     private db: AngularFirestore
   ) {

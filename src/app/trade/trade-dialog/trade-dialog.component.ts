@@ -4,7 +4,7 @@ import {TradeModel} from "../../models/trade-model";
 import {ManagementPanelComponent} from "../../dashboard/management-panel/management-panel.component";
 
 @Component({
-  selector: 'app-trade-dialog',
+  selector: 'trade-dialog',
   templateUrl: './trade-dialog.component.html',
   styleUrls: ['./trade-dialog.component.scss']
 })

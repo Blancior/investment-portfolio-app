@@ -1,0 +1,24 @@
+@import "src/app/variables.scss";
+.container{
+  min-height: 200px;
+}
+p{
+  margin-top: 6%;
+  text-align: center;
+  font-size: 3vh;
+}
+.button-group{
+  margin-top: 6%;
+  @extend .fullCenter;
+  gap: 4vw;
+  margin-bottom: 10px;
+}
+#accept-button{
+  @extend .fullCenter;
+  border-radius: 50%;
+  background-color: #00bb07;
+}
+#cancel-button{
+  border-radius: 100%;
+  background-color: #a50004;
+}

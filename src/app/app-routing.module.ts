@@ -4,6 +4,7 @@ import {AssetComponent} from "./dashboard/asset/asset.component";
 import {ManagementPanelComponent} from "./dashboard/management-panel/management-panel.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 
+
 const routes: Routes = [
   {path: '', redirectTo: '/main',pathMatch: 'full'},
   {path: 'main',  component: DashboardComponent},

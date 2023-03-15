@@ -14,8 +14,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class ManagementPanelComponent implements OnInit{
 
   CnameI:string;
-  CQuantI:number=0;
-  CInvestedMoneyI:number=0;
+  CQuantI:number;
+  CInvestedMoneyI:number;
   CDateI:string = new Date().toISOString().slice(0,19);
   form1: FormGroup;
   constructor(

@@ -37,12 +37,12 @@
         <button class="btn" mat-raised-button (click)="addTrade()"><b>Enter Trade</b></button>
       </div>
     </form>
-  <div class="row info">
-      <div class="col-sm-3">CurrenttotalValue: ${{dashboard.actual}}</div>
-      <div class="col-sm-3">firstTrade {{dashboard.minDate | date: 'dd-MM-YYYY HH:MM'}}</div>
-      <div class="col-sm-3">totalInvestments($) {{dashboard.totalInv}}</div>
-      <div class="col-sm-3">ilosc tradeow: {{dashboard.numberOfTrades}}</div>
-  </div>
+<!--  <div class="row info">-->
+<!--      <div class="col-sm-3">CurrenttotalValue: ${{dashboard.actual}}</div>-->
+<!--      <div class="col-sm-3">firstTrade {{dashboard.minDate | date: 'dd-MM-YYYY HH:MM'}}</div>-->
+<!--      <div class="col-sm-3">totalInvestments($) {{dashboard.totalInv}}</div>-->
+<!--      <div class="col-sm-3">ilosc tradeow: {{dashboard.numberOfTrades}}</div>-->
+<!--  </div>-->
     </div>
 </div>
 <div class="container invList">
@@ -56,6 +56,7 @@
     <p> date of bought</p>
     <p> action</p>
   </div>
+
   <ul class="trade col" *ngFor="let trade of dashboard.records$ | async; let i = index">
     <li>{{i+1}}</li>
     <li>{{trade.coinName.toUpperCase()}}</li>
