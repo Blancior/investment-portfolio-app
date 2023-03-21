@@ -7,7 +7,7 @@
     </div>
     <div class="col-sm-4">
       <span class="text-area">
-        Invested money:   {{sumInv}} $
+        Invested money:   {{sumInv}}$
       </span>
     </div>
     <div class="col-sm-4">
@@ -25,7 +25,7 @@
 
     <div class="col-sm-4" id="currentBalance">
       <span class="text-area">
-        Actual value: {{actualPrice }}
+        Actual value: {{actualPrice }}$
       </span>
     </div>
     <div class="col-sm-4 lastTrade">
@@ -41,7 +41,7 @@
       <p> asset name</p>
       <p> value ($)</p>
       <p> price ($)</p>
-      <p> quantity</p>
+      <p> amount</p>
       <p> date of bought</p>
     </div>
     <ul class="trade col" *ngFor="let trade of trades$ | async; let i = index">

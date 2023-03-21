@@ -17,17 +17,18 @@
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
-  border: 1px solid orange;
+  border: 2px solid orange;
+  border-radius: 20px;
+
 }
 .desc2 > p{
   width: clamp(50px,100px,100px);
-  border: 1px solid saddlebrown;
   margin: 10px 20px;
   text-align: center;
 }
 .move-right{
   position: relative;
-  left: 12px;
+  left: 10px;
 }
 input{
   border-radius: 25px;

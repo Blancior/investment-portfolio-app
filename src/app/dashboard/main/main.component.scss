@@ -34,6 +34,7 @@
   display: flex;
   justify-content: space-between;
   border: 2px solid green;
+  border-radius: 10px;
   margin: 1vh 0;
 }
 li{
@@ -41,7 +42,7 @@ li{
 }
 .descriptionList > p {
   width: clamp(100px,100px,150px);
-  border: 1px solid saddlebrown;
+  border-radius: 20px;
   margin: 10px 20px;
   text-align: center;
 }
@@ -53,6 +54,10 @@ li{
   align-items: center;
   justify-content: space-between;
   border: 3px solid orange;
+  border-radius: 20px;
+}
+.trade:nth-child(2n){
+  border: 3px solid gold;
 }
 .trade >li{
   @extend .fullCenter;
