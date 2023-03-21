@@ -5,10 +5,14 @@
 .col-sm-4{
   @extend .fullCenter;
   align-items: center;
-  border: 2px solid red;
   font-size: 20px;
   min-height: 50px;
   border-radius: 25px;
+}
+.text-area{
+  border:3px solid orange;
+  border-radius: 25px;
+  padding: 10px 50px;
 }
 .invList{
   margin-top: 20px;
@@ -20,8 +24,11 @@
   margin-bottom: 10px;
 
 }
-.container {
-  border: 1px dotted red;
+.main-container{
+  -webkit-box-shadow: 15px 16px 24px 0 rgba(66, 68, 90, 1);
+  -moz-box-shadow: 15px 16px 24px 0 rgba(66, 68, 90, 1);
+  box-shadow: 15px 16px 24px 0 rgba(66, 68, 90, 1);
+  padding: 1vh;
 }
 .descriptionList{
   display: flex;
@@ -35,12 +42,13 @@ li{
 .descriptionList > p {
   width: clamp(100px,100px,150px);
   border: 1px solid saddlebrown;
-  margin: 10px 0;
+  margin: 10px 20px;
   text-align: center;
 }
 .descriptionList > p:first-child{
   margin-left: 30px;
 }
+
 .trade{
   align-items: center;
   justify-content: space-between;
@@ -51,9 +59,11 @@ li{
   width: clamp(50px,100px,100px);
   text-align: center;
   list-style-type: none;
+  margin-right: 20px;
   border-right: 2px solid black;
   border-left: 2px solid black;
 }
+
 .title1{
   @extend .fullCenter;
   margin-top: 20px;

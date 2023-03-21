@@ -1,14 +1,38 @@
-<div class="container">
+<div class="container main-container">
   <div class="row">
-    <div class="col-sm-4 totalValue">You made {{dashboard.numberOfTrades}} trades</div>
-    <div class="col-sm-4 firstTrade">Date of first trade: {{minTradeDate | date: 'dd-MM-yyyy'}}</div>
-    <div class="col-sm-4 totalInvestments">Invested money:  {{sumInv}}</div>
+    <div class="col-sm-4">
+      <span class="text-area">
+        You made {{dashboard.numberOfTrades}} trades
+      </span>
+    </div>
+    <div class="col-sm-4">
+      <span class="text-area">
+        Invested money:   {{sumInv}} $
+      </span>
+    </div>
+    <div class="col-sm-4">
+      <span class="text-area">
+        First trade: {{minTradeDate | date: 'dd-MM-yyyy'}}
+      </span>
+    </div>
   </div>
   <div class="row">
-    <div class="col-sm-4 profit" id="profit" [ngStyle]="{'color':(actualPrice/sumInv)>1 ? 'green' : 'red' }">profit/loss
-      {{((actualPrice/sumInv)*100)>100 ? +((actualPrice/sumInv)*100-100).toFixed(2) : -((sumInv/actualPrice)*100-100).toFixed(2)}}%</div>
-    <div class="col-sm-4 lastTrade">Date of last trade:  {{maxTradeDate | date: 'dd-MM-yyyy'}}</div>
-    <div class="col-sm-4" id="currentBalance">Actual value: {{actualPrice }}</div>
+    <div class="col-sm-4" id="profit" [ngStyle]="{'color':(actualPrice/sumInv)>1 ? 'green' : 'red' }">
+      <span class="text-area">profit/loss
+      {{((actualPrice/sumInv)*100)>100 ? +((actualPrice/sumInv)*100-100).toFixed(2) : -((sumInv/actualPrice)*100-100).toFixed(2)}}%
+      </span>
+    </div>
+
+    <div class="col-sm-4" id="currentBalance">
+      <span class="text-area">
+        Actual value: {{actualPrice }}
+      </span>
+    </div>
+    <div class="col-sm-4 lastTrade">
+      <span class="text-area">
+        Last trade:  {{maxTradeDate | date: 'dd-MM-yyyy'}}
+      </span>
+    </div>
   </div>
     <div class="container invList">
     <p class="title1">List of trades</p>
