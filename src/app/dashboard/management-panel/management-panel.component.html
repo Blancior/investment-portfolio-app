@@ -4,10 +4,6 @@
     <div class="row trade">
     <form [formGroup]="form1">
     <div class="row">
-        <!--            <div class="col form-col">-->
-        <!--              <label>Coin name</label>-->
-        <!--              <input type="text" class="form-control" [(ngModel)]="CnameI" [ngModelOptions]="{standalone: true}" required>-->
-        <!--            </div>-->
          <div class="col form-col">
           <label>Asset Name</label>
           <select  class="form-select" [(ngModel)]="CnameI" formControlName="name">
@@ -37,12 +33,6 @@
         <button class="btn" mat-raised-button (click)="addTrade()"><b>Enter Trade</b></button>
       </div>
     </form>
-<!--  <div class="row info">-->
-<!--      <div class="col-sm-3">CurrenttotalValue: ${{dashboard.actual}}</div>-->
-<!--      <div class="col-sm-3">firstTrade {{dashboard.minDate | date: 'dd-MM-YYYY HH:MM'}}</div>-->
-<!--      <div class="col-sm-3">totalInvestments($) {{dashboard.totalInv}}</div>-->
-<!--      <div class="col-sm-3">ilosc tradeow: {{dashboard.numberOfTrades}}</div>-->
-<!--  </div>-->
     </div>
 </div>
 <div class="container invList">
@@ -65,9 +55,6 @@
     <li>{{trade.quantity}}</li>
     <li>{{trade.date | date: 'dd-MM-yyyy'}}</li>
     <li id="buttonD">
-<!--      <button mat-mini-fab color="primary" (click)="goToDelete(trade)">-->
-<!--        <mat-icon>edit</mat-icon>-->
-<!--      </button>-->
     <button mat-mini-fab color="warn" (click)="goToDelete(trade)">
       	<mat-icon>remove_circle_outline</mat-icon>
     </button>

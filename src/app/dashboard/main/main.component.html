@@ -1,36 +1,37 @@
 <div class="container main-container">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-md-4 indicator">
       <span class="text-area">
         You made {{dashboard.numberOfTrades}} trades
       </span>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4 indicator">
       <span class="text-area">
         Invested money:   {{sumInv}}$
       </span>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <span class="text-area">
-        First trade: {{minTradeDate | date: 'dd-MM-yyyy'}}
+        First trade: {{minTradeDate | date: 'dd-MM-yyyy'}} <p><p>({{dashboard.calcTime(this.minTradeDate)}} days ago)</p>
       </span>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-4" id="profit" [ngStyle]="{'color':(actualPrice/sumInv)>1 ? 'green' : 'red' }">
-      <span class="text-area">profit/loss
-      {{((actualPrice/sumInv)*100)>100 ? +((actualPrice/sumInv)*100-100).toFixed(2) : -((sumInv/actualPrice)*100-100).toFixed(2)}}%
+    <div class="col-md-4 indicator" id="profit" [ngStyle]="{'color':(actualPrice/sumInv)>1 ? 'green' : 'red' }">
+      <span class="text-area">
+      {{((actualPrice/sumInv)*100)>100 ? 'Profit: +'+((actualPrice/sumInv)*100-100).toFixed(2) : 'Loss -'+((sumInv/actualPrice)*100-100).toFixed(2)}}%
       </span>
     </div>
 
-    <div class="col-sm-4" id="currentBalance">
+    <div class="col-md-4 indicator" id="currentBalance">
       <span class="text-area">
         Actual value: {{actualPrice }}$
       </span>
     </div>
-    <div class="col-sm-4 lastTrade">
+    <div class="col-md-4">
       <span class="text-area">
         Last trade:  {{maxTradeDate | date: 'dd-MM-yyyy'}}
+        <p>({{dashboard.calcTime(this.maxTradeDate)}} days ago)</p>
       </span>
     </div>
   </div>

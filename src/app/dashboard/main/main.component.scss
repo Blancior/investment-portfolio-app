@@ -2,17 +2,26 @@
 .row{
   margin: 20px 0;
 }
-.col-sm-4{
+.col-md-4{
   @extend .fullCenter;
   align-items: center;
   font-size: 20px;
-  min-height: 50px;
+
   border-radius: 25px;
+}
+.col-md-4 p{
+  @extend .fullCenter;
+  margin-top: 5px;
 }
 .text-area{
   border:3px solid orange;
   border-radius: 25px;
   padding: 10px 50px;
+  min-height: 100px;
+  text-align: center;
+}
+.indicator{
+@extend .fullCenter;
 }
 .invList{
   margin-top: 20px;

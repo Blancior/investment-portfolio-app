@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {combineLatest, map, Observable} from 'rxjs';
 import {TradeModel} from "../models/trade-model";
@@ -10,9 +10,10 @@ import axios from "axios";
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent{
+export class DashboardComponent implements OnInit{
   maxDate: any;
   minDate: any;
+  timeSinceMax:any;
   records$: Observable<TradeModel[]>;
   coinNames: string[]=[];
   coinNames2: string[]=[];
@@ -47,8 +48,13 @@ export class DashboardComponent{
       this.getCurrentPrices();
     });
      this.getNumberOfTrades();
-
+    console.log(this.timeSinceMax);
   }
+
+  ngOnInit(): void {
+    this.calcTime(this.minDate);
+    this.calcTime(this.maxDate);
+    }
 
   getTrades(): Observable<TradeModel[]>{
     return this.db.collection<TradeModel>('trades').snapshotChanges().pipe(map(res => res.map(trade => this.assignKey(trade))));
@@ -65,6 +71,7 @@ export class DashboardComponent{
       querySnapshot.forEach(doc => {
         const data = doc.data() as { date: string};
         this.maxDate = data.date;
+
       });
     });
   }
@@ -74,6 +81,7 @@ export class DashboardComponent{
       querySnapshot.forEach(doc => {
         const data = doc.data() as { date: string};
         this.minDate = data.date;
+
       });
     }).catch(error => {console.error(error)});
   }
@@ -108,5 +116,11 @@ export class DashboardComponent{
     this.db.collection('trades').get().toPromise().then(snapshot => {
       this.numberOfTrades = snapshot.size;
     })
-  }
+}
+calcTime(date: any){
+  let currentDate = new Date().toISOString();
+  let date1 = Number(Date.parse(date));
+  let date2 =Number(Date.parse(currentDate));
+  return  Math.ceil((date2 - date1)/(1000*60*60*24));
+}
 }
