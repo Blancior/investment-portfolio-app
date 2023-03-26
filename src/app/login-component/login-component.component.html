@@ -1,0 +1,15 @@
+<div class="row justify-content-center login-container">
+  <div class="col-sm-4 shadow login-content">
+    <h3>LOGIN</h3>
+    <mat-form-field class="d-block" style="margin-left: 20%;margin-right: 20%">
+      <input matInput placeholder="Email"  required>
+      <mat-error>Email is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="d-block" style="margin-left: 20%;margin-right: 20%">
+      <input type="password" matInput placeholder="Password"    required >
+      <mat-error>Password is required</mat-error><br/>
+    </mat-form-field>
+    <button class="login-button" mat-raised-button color="primary" > LOG IN</button>
+    </div>
+  <router-outlet></router-outlet>
+</div>

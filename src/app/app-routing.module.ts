@@ -3,13 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import {AssetComponent} from "./dashboard/asset/asset.component";
 import {ManagementPanelComponent} from "./dashboard/management-panel/management-panel.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {LoginComponentComponent} from "./login-component/login-component.component";
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/main',pathMatch: 'full'},
   {path: 'main',  component: DashboardComponent},
   {path: 'asset', component: AssetComponent},
-  {path: 'management-panel', component: ManagementPanelComponent}
+  {path: 'management-panel', component: ManagementPanelComponent},
+  {path: 'login-component', component: LoginComponentComponent}
 ];
 
 @NgModule({

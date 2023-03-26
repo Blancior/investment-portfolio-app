@@ -6,7 +6,6 @@
   @extend .fullCenter;
   align-items: center;
   font-size: 20px;
-
   border-radius: 25px;
 }
 .col-md-4 p{
@@ -15,10 +14,12 @@
 }
 .text-area{
   border:3px solid orange;
+  height: fit-content;
   border-radius: 25px;
   padding: 10px 50px;
-  min-height: 100px;
   text-align: center;
+  min-height: 100px;
+
 }
 .indicator{
 @extend .fullCenter;

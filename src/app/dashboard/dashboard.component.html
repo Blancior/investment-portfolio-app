@@ -1,3 +1,28 @@
+<mat-toolbar class="page-container">
+  <span>Investment Portfolio</span>
+</mat-toolbar>
+<input type="checkbox" id="check" />
+<label for="check">
+  <i id="btn">
+    <img src="/assets/images/menuIcon.png" alt="open menu" width="50px" height="50px">
+  </i>
+  <i id="cancel">
+    <img src="/assets/images/closeIcon.png" alt="close menu" width="40px" height="40px">
+  </i>
+</label>
+<div class="sidebar">
+  <ul>
+    <li>
+      <p routerLink="/main">Dashboard</p>
+    </li>
+    <li>
+      <p routerLink="/management-panel">Management</p>
+    </li>
+    <li>
+      <p routerLink="/asset">Szukajka</p>
+    </li>
+  </ul>
+</div>
 <div class="container">
   <router-outlet></router-outlet>
   <app-main [maxTradeDate]="maxDate" [minTradeDate]="minDate" [sumInv]="totalInv" [trades$]="records$" [actualPrice]="actual"></app-main>

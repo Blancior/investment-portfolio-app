@@ -20,6 +20,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogConfig, MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
 import { TradeDialogComponent } from './trade/trade-dialog/trade-dialog.component';
+import { LoginComponentComponent } from './login-component/login-component.component';
 
 const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
   width:'700px',
@@ -36,6 +37,7 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
     MainComponent,
     ManagementPanelComponent,
     TradeDialogComponent,
+    LoginComponentComponent,
   ],
     imports: [
         BrowserModule,
