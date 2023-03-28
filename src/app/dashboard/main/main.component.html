@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container main-container">
   <div class="row">
     <div class="col-md-4 indicator">
@@ -7,45 +8,46 @@
     </div>
     <div class="col-md-4 indicator">
       <span class="text-area">
-        Invested money:   {{sumInv}}$
+        Invested money:   {{dashboard.totalInv}}$
       </span>
     </div>
     <div class="col-md-4">
       <span class="text-area">
-        First trade: {{minTradeDate | date: 'dd-MM-yyyy'}} <p><p>({{dashboard.calcTime(this.minTradeDate)}} days ago)</p>
+        First trade: {{dashboard.minDate | date: 'dd-MM-yyyy'}} <p><p>({{dashboard.calcTime(dashboard.minDate)}} days ago)</p>
       </span>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4 indicator" id="profit" [ngStyle]="{'color':(actualPrice/sumInv)>1 ? 'green' : 'red' }">
+    <div class="col-md-4 indicator" id="profit" [ngStyle]="{'color':(dashboard.actual/dashboard.totalInv)>1 ? 'green' : 'red' }">
       <span class="text-area">
-      {{((actualPrice/sumInv)*100)>100 ? 'Profit: +'+((actualPrice/sumInv)*100-100).toFixed(2) : 'Loss -'+((sumInv/actualPrice)*100-100).toFixed(2)}}%
+      {{((this.dashboard.actual/dashboard.totalInv)*100)>100 ? 'Profit: +'+((dashboard.actual/dashboard.totalInv)*100-100).toFixed(2)
+        : 'Loss -'+((dashboard.totalInv/dashboard.actual)*100-100).toFixed(2)}}%
       </span>
     </div>
 
     <div class="col-md-4 indicator" id="currentBalance">
       <span class="text-area">
-        Actual value: {{actualPrice }}$
+        Actual value: {{dashboard.actual }}$
       </span>
     </div>
     <div class="col-md-4">
       <span class="text-area">
-        Last trade:  {{maxTradeDate | date: 'dd-MM-yyyy'}}
-        <p>({{dashboard.calcTime(this.maxTradeDate)}} days ago)</p>
+        Last trade:  {{dashboard.maxDate| date: 'dd-MM-yyyy'}}
+        <p>({{dashboard.calcTime(this.dashboard.maxDate)}} days ago)</p>
       </span>
     </div>
   </div>
     <div class="container invList">
     <p class="title1">List of trades</p>
     <div class="descriptionList">
-      <p> index</p>
-      <p> asset name</p>
-      <p> value ($)</p>
-      <p> price ($)</p>
-      <p> amount</p>
-      <p> date of bought</p>
+      <div class="row"> index</div>
+      <div class="row"> asset name</div>
+      <div class="row"> value ($)</div>
+      <div class="row"> price ($)</div>
+      <div class="row"> amount</div>
+      <div class="row"> date of bought</div>
     </div>
-    <ul class="trade col" *ngFor="let trade of trades$ | async; let i = index">
+    <ul class="trade col" *ngFor="let trade of dashboard.records$ | async; let i = index">
       <li>{{i+1}}</li>
       <li>{{trade.coinName.toUpperCase()}}</li>
       <li>{{(trade.priceusd*trade.quantity).toFixed(2)}}</li>

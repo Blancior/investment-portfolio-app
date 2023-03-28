@@ -41,7 +41,7 @@
   padding: 1vh;
 }
 .descriptionList{
-  display: flex;
+  @extend .fullCenter;
   justify-content: space-between;
   border: 2px solid green;
   border-radius: 10px;
@@ -50,16 +50,17 @@
 li{
   list-style-type: none;
 }
-.descriptionList > p {
-  width: clamp(100px,100px,150px);
+.descriptionList  .row {
+  display: flex;
+  justify-content: center;
   border-radius: 20px;
-  margin: 10px 20px;
   text-align: center;
+  width: 100px;
 }
-.descriptionList > p:first-child{
-  margin-left: 30px;
+.descriptionList > *:first-child{
+  margin-left: 32px;
+  padding-left:10px ;
 }
-
 .trade{
   align-items: center;
   justify-content: space-between;
@@ -70,18 +71,22 @@ li{
   border: 3px solid gold;
 }
 .trade >li{
-  @extend .fullCenter;
   width: clamp(50px,100px,100px);
   text-align: center;
   list-style-type: none;
-  margin-right: 20px;
   border-right: 2px solid black;
   border-left: 2px solid black;
 }
-
 .title1{
   @extend .fullCenter;
   margin-top: 20px;
   font-weight: bold;
   font-size: $font-size-title;
+}
+.descriptionList > .row:last-child{
+  margin-right: 32px;
+}
+.trade > li:last-child{
+  margin-right: 32px;
+  padding-right: 10px;
 }

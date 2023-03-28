@@ -1,12 +1,13 @@
+<app-navbar></app-navbar>
 <div class="container">
-<div class="col-sm-3 s2">
-  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-  <p>Wskaz aktywo do sprawdzenia</p>
-  <input class="searchBar" [(ngModel)]="selectedCrypto"
-  [value]="selectedCrypto" formControlName="assetName">
-<input type="submit">
-  </form>
-  <p>{{selectedCrypto}}</p>
-  <p>{{selectedCrypto1}}</p>
-</div>
+  <div class="col-sm-3 s2">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <p>Wskaz aktywo do sprawdzenia</p>
+    <input class="searchBar" [(ngModel)]="selectedCrypto"
+    [value]="selectedCrypto" formControlName="assetName">
+  <input type="submit">
+    </form>
+    <p>{{selectedCrypto}}</p>
+    <p>{{selectedCrypto1}}</p>
+  </div>
 </div>
