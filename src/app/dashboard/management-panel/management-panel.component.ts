@@ -44,6 +44,7 @@ export class ManagementPanelComponent implements OnInit{
       quantity: this.CQuantI,
       date: this.CDateI,
     });
+    this.form1.reset();
   }
   deleteRecord(coinName: string, quantity: number, date: string) {
     this.db.collection('trades', ref => ref

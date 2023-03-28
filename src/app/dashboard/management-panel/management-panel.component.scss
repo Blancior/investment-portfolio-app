@@ -6,7 +6,6 @@
   border: 2px solid turquoise;
   text-align: center;
 }
-
 .text-center{
   font-size: $font-size-title;
 }
@@ -19,11 +18,17 @@
   margin: 10px 0;
   border: 2px solid orange;
   border-radius: 20px;
-
 }
-.desc2 > p{
-  width: clamp(50px,100px,100px);
-  margin: 10px 20px;
+.desc2 > .row{
+  display: flex;
+  justify-content: center;
+
+}.desc2 > .row:first-child{
+  margin-left: 10px;
+  padding-left: 32px;
+}
+.desc2 .row{
+  width: 100px;
   text-align: center;
 }
 .move-right{
