@@ -21,3 +21,9 @@ mat-radio-group{
   display: flex;
   justify-content: center;
 }
+#ind1{
+  @extend .fullCenter;
+  margin: 2rem;
+  font-size: 3vh;
+  visibility: hidden;
+}
