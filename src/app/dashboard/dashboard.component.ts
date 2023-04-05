@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit{
   numberOfTrades:number;
   coinNames1: string[]=[
     'bitcoin','ethereum','ripple','dogecoin','cardano','binancecoin','solana','polkadot','litecoin','tron','shiba-inu','dai','uniswap','chainlink','wrapped-bitcoin',
-    'cosmos','monero','algorand','lido-dao','ethereum-classic','okb','butcoin-cash','stellar','filecoin','aptos','cronos','near','vechain','apecoin','internet-computer',
+    'cosmos','monero','algorand','lido-dao','ethereum-classic','okb','bitcoin-cash','stellar','filecoin','aptos','cronos','near','vechain','apecoin','internet-computer',
     'algorand','eos','the-graph','fantom','decentraland','bitdao','aave','flow','tezos','axie-infinity','the-sandbox','maker','neo','chiliz','huobi-token','optimism',
     'dash','cake','iota','gmx','zilliqa','1inch','osmosis','floki','dydx','woo-network','link','gala','lisk'
   ];
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit{
       this.getCurrentPrices();
     });
      this.getNumberOfTrades();
-    console.log(this.timeSinceMax);
+    console.log('eeeeo '+this.timeSinceMax);
   }
 
   ngOnInit(): void {
@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit{
     });
   }
   getMinDate(){
-    this.db.collection('trades', ref => ref.orderBy('date',"desc").limit(1)
+    this.db.collection('trades', ref => ref.orderBy('date','desc').limit(1)
     ).get().toPromise().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         const data = doc.data() as { date: string};
@@ -119,6 +119,9 @@ calcTime(date: any){
   let currentDate = new Date().toISOString();
   let date1 = Number(Date.parse(date));
   let date2 =Number(Date.parse(currentDate));
+  console.log('aaa'+ date);
+  console.log('aaabbb'+ currentDate);
+  console.log('czas '+Math.ceil((date2 - date1)/(1000*60*60*24)));
   return  Math.ceil((date2 - date1)/(1000*60*60*24));
 }
 }
