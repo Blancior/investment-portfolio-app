@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit{
     'bitcoin','ethereum','ripple','dogecoin','cardano','binancecoin','solana','polkadot','litecoin','tron','shiba-inu','dai','uniswap','chainlink','wrapped-bitcoin',
     'cosmos','monero','algorand','lido-dao','ethereum-classic','okb','butcoin-cash','stellar','filecoin','aptos','cronos','near','vechain','apecoin','internet-computer',
     'algorand','eos','the-graph','fantom','decentraland','bitdao','aave','flow','tezos','axie-infinity','the-sandbox','maker','neo','chiliz','huobi-token','optimism',
-    'dash','cake','iota','gmx','gate','zilliqa','1inch','osmosis','floki','dydx','woo-network','link','gala','lisk'
+    'dash','cake','iota','gmx','zilliqa','1inch','osmosis','floki','dydx','woo-network','link','gala','lisk'
   ];
   constructor(
     private db: AngularFirestore

@@ -2,17 +2,17 @@
 <div class="container">
   <div class="col-sm-3 s2">
     <form (ngSubmit)="onSubmit()">
-    <p>Wskaz aktywo do sprawdzenia</p>
+    <p>Select the currency you want to check the price</p>
       <select  class="form-select" [(ngModel)]="selectedCrypto" [ngModelOptions]="{standalone: true}">
         <option *ngFor="let coin of dashboard.coinNames1" [value]=coin (resize)="5">
           {{coin.toUpperCase()}}
         </option>
       </select>
-  <input type="submit">
+  <input type="submit" class="btn btn-primary" value="check price">
     </form>
   </div>
   <div class="col-md" id="ind1">
-    <p>Current price of  {{(selectedCrypto)}} is:</p>
-    <p>{{selectedCryptoPrice}}</p>
+    <p>Current price of  {{(displayedRN)}} is:</p>
+    <p>{{selectedCryptoPrice}}$</p>
   </div>
 </div>
