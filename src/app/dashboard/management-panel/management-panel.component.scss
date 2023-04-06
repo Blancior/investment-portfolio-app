@@ -22,8 +22,9 @@
 .desc2 > .row{
   display: flex;
   justify-content: center;
-
-}.desc2 > .row:first-child{
+  margin-right: 2vw;
+}
+.desc2 > .row:first-child{
   margin-left: 10px;
   padding-left: 32px;
 }

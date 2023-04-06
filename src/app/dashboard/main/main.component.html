@@ -13,8 +13,8 @@
     </div>
     <div class="col-md-4">
       <span class="text-area">
-        First trade: {{dashboard.maxDate | date: 'dd-MM-yyyy'}} <p>
-        <p>({{dashboard.calcTime(dashboard.maxDate)}} days ago)</p>
+        <p>First trade:</p>
+         <p>{{dashboard.maxDate | date: 'dd-MM-yyyy'}} ({{dashboard.calcTime(dashboard.maxDate)}} days ago)</p>
       </span>
     </div>
   </div>
@@ -33,20 +33,20 @@
     </div>
     <div class="col-md-4">
       <span class="text-area">
-        Last trade:  {{dashboard.minDate| date: 'dd-MM-yyyy'}}
-        <p>({{dashboard.calcTime(dashboard.minDate)}} days ago)</p>
+       <p> Last trade:</p>
+         <p>{{dashboard.minDate| date: 'dd-MM-yyyy'}} ({{dashboard.calcTime(dashboard.minDate)}} days ago)</p>
       </span>
     </div>
   </div>
     <div class="container invList">
     <p class="title1">List of trades</p>
     <div class="descriptionList">
-      <div class="row"> index</div>
-      <div class="row"> asset name</div>
-      <div class="row"> value ($)</div>
-      <div class="row"> price ($)</div>
-      <div class="row"> amount</div>
-      <div class="row"> date of bought</div>
+      <div class="row"> Index</div>
+      <div class="row"> Asset name</div>
+      <div class="row"> Value ($)</div>
+      <div class="row"> Price ($)</div>
+      <div class="row"> Amount</div>
+      <div class="row"> Date of bought</div>
     </div>
     <ul class="trade col" *ngFor="let trade of dashboard.records$ | async; let i = index">
       <li>{{i+1}}</li>
