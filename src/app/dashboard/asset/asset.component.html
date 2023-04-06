@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <div class="col-sm-3 s2">
-    <form (ngSubmit)="onSubmit()">
+  <div class="col-sm-4 s2">
+    <form class="form1" (ngSubmit)="onSubmit()">
     <p>Select the currency you want to check the price</p>
       <select  class="form-select" [(ngModel)]="selectedCrypto" [ngModelOptions]="{standalone: true}">
         <option *ngFor="let coin of dashboard.coinNames1" [value]=coin (resize)="5">
