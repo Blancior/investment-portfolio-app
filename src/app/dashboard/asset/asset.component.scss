@@ -5,7 +5,7 @@
 }
 .s2 {
   box-shadow: 8px 8px 24px 0 rgba(66, 68, 90, 1);
-  width: 40vw;
+  max-width: 506px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -37,4 +37,20 @@ mat-radio-group{
 }
 .btn{
   margin: 20px;
+}
+#ind2{
+  text-align: center;
+  margin: 3vh auto;
+  max-width: 504px;
+  visibility: hidden;
+}
+mat-card-header{
+  padding-top: 10px;
+  display: contents;
+}
+mat-card-content{
+  font-size: 2vh;
+}
+mat-card-footer{
+  padding-top: 10px;
 }

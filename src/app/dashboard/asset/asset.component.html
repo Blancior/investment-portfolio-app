@@ -11,8 +11,18 @@
   <input type="submit" class="btn btn-primary" value="check price">
     </form>
   </div>
-  <div class="col-md" id="ind1">
-    <p>Current price of  {{(displayedRN)}} is:</p>
-    <p>{{selectedCryptoPrice}}$</p>
-  </div>
+  <mat-card id="ind2">
+    <mat-card-header>
+      <mat-card-title>
+        {{displayedRN}}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      {{selectedCryptoPrice}}($)
+    </mat-card-content>
+    <mat-card-footer>
+      <p>As of:</p>
+      <p>{{date | date: ' HH:mm:ss dd-MM-yyyy'}} </p>
+    </mat-card-footer>
+  </mat-card>
 </div>

@@ -8,6 +8,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {AngularFireModule} from '@angular/fire/compat';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
+import {MatCardModule} from "@angular/material/card";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { AssetComponent } from './dashboard/asset/asset.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -41,23 +42,24 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
     LoginComponentComponent,
     NavbarComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonToggleModule,
-        MatFormFieldModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
-        MatButtonModule,
-        MatInputModule,
-        MatDialogModule,
-        MatSelectModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonToggleModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    MatButtonModule,
+    MatInputModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatCardModule
+  ],
   providers: [
     MatDialog,
     DashboardComponent,

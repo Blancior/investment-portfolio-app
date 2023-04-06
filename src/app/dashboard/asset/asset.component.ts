@@ -13,6 +13,7 @@ export class AssetComponent implements OnInit{
   selectedCrypto:string;
   displayedRN:string='bitcoin';
   cryptoPrice :any;
+  date: any;
   ngOnInit() {
     }
     constructor(public dashboard: DashboardComponent) {
@@ -29,9 +30,9 @@ export class AssetComponent implements OnInit{
            this.selectedCryptoPrice=response.data[0].current_price;
            if (this.selectedCryptoPrice.toString().length>5)
              Math.round(this.selectedCryptoPrice);
-           this.displayedRN=this.selectedCrypto;
-           console.log('length: '+this.selectedCryptoPrice.toString().length)
-           document.getElementById("ind1").style.visibility='visible';
+           this.displayedRN=this.selectedCrypto.toUpperCase();
+           document.getElementById("ind2").style.visibility='visible';
+           this.date = new Date();
          }).catch(error => {
            console.error(error);
          });
