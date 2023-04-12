@@ -46,7 +46,6 @@ export class DashboardComponent implements OnInit{
       this.getCurrentPrices();
     });
      this.getNumberOfTrades();
-    console.log('eeeeo '+this.timeSinceMax);
   }
 
   ngOnInit(): void {
@@ -119,9 +118,6 @@ calcTime(date: any){
   let currentDate = new Date().toISOString();
   let date1 = Number(Date.parse(date));
   let date2 =Number(Date.parse(currentDate));
-  console.log('aaa'+ date);
-  console.log('aaabbb'+ currentDate);
-  console.log('czas '+Math.ceil((date2 - date1)/(1000*60*60*24)));
   return  Math.ceil((date2 - date1)/(1000*60*60*24));
 }
 }

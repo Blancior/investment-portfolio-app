@@ -23,6 +23,7 @@ import {MatSelectModule} from "@angular/material/select";
 import { TradeDialogComponent } from './trade/trade-dialog/trade-dialog.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 
 const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
   width:'700px',
@@ -54,6 +55,7 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     MatButtonModule,
     MatInputModule,
     MatDialogModule,
