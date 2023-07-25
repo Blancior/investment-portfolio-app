@@ -7,7 +7,7 @@
     <div class="row">
          <div class="col form-col">
           <label>Asset Name</label>
-          <select  class="form-select" [(ngModel)]="CnameI" formControlName="name">
+          <select  class="form-select"  formControlName="name">
             <option *ngFor="let coin of dashboard.coinNames1" [value]=coin (resize)="5">
               {{coin.toUpperCase()}}
             </option>
@@ -17,12 +17,12 @@
 
         <div class="col form-col">
           <label>Amount</label>
-          <input type="number" class="form-control" [(ngModel)]="CQuantI" formControlName="amount" required>
+          <input type="number" class="form-control"  formControlName="amount" required>
           <mat-error *ngIf="form1.get('amount')?.errors?.['required']">Insert amount</mat-error>
         </div>
         <div class="col form-col">
           <label>Invested money</label>
-          <input type="number" class="form-control"  [(ngModel)]="CInvestedMoneyI" formControlName="invested" required>
+          <input matInput type="number" class="form-control"  formControlName="invested" required>
           <mat-error *ngIf="form1.get('invested')?.errors?.['required']">Insert invested money</mat-error>
         </div>
         <div class="col form-col">
