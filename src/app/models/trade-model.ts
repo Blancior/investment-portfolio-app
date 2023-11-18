@@ -5,3 +5,10 @@ export interface TradeModel{
   investedInUSD:number;
   date: string;
 }
+
+
+export interface ChartModel1 {
+  name:string,
+  y:string,
+
+}

@@ -8,9 +8,9 @@
          <div class="col form-col">
           <label>Asset Name</label>
           <select  class="form-select"  formControlName="name">
-            <option *ngFor="let coin of dashboard.coinNames1" [value]=coin (resize)="5">
-              {{coin.toUpperCase()}}
-            </option>
+<!--            <option *ngFor="let coin of dashboard.coinNames1" [value]=coin (resize)="5">-->
+<!--              {{coin.toUpperCase()}}-->
+<!--            </option>-->
           </select>
            <mat-error *ngIf="form1.get('name')?.errors?.['required']">Asset name is required</mat-error>
          </div>
@@ -48,7 +48,7 @@
     <div class="row"> Action</div>
   </div>
 
-  <ul class="trade col" *ngFor="let trade of dashboard.records$ | async; let i = index">
+  <ul class="trade col" *ngFor="let trade of tradeService.records$ | async; let i = index">
     <li>{{i+1}}</li>
     <li>{{trade.coinName.toUpperCase()}}</li>
     <li>{{(trade.priceusd*trade.quantity).toFixed(3)}}</li>

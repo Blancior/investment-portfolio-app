@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {DashboardComponent} from "../dashboard.component";
+import {Component} from '@angular/core';
 import axios from "axios";
 
 @Component({
@@ -8,16 +7,18 @@ templateUrl: './asset.component.html',
 styleUrls: ['./asset.component.scss']
 
 })
-export class AssetComponent implements OnInit{
+export class AssetComponent{
   apikey= '4697a2f8-01cf-4bd3-9d0b-29f3a4d1b835';
   selectedCrypto:string;
   displayedRN:string='bitcoin';
   cryptoPrice :any;
   date: any;
-  ngOnInit() {
-    }
-    constructor(public dashboard: DashboardComponent) {
-    }
+  coinNames1: string[] = [
+    'bitcoin', 'ethereum', 'ripple', 'dogecoin', 'cardano', 'binancecoin', 'solana', 'polkadot', 'litecoin', 'tron', 'shiba-inu', 'dai', 'uniswap', 'chainlink', 'wrapped-bitcoin',
+    'cosmos', 'monero', 'algorand', 'lido-dao', 'ethereum-classic', 'okb', 'bitcoin-cash', 'stellar', 'filecoin', 'aptos', 'cronos', 'near', 'vechain', 'apecoin', 'internet-computer',
+    'algorand', 'eos', 'the-graph', 'fantom', 'decentraland', 'bitdao', 'aave', 'flow', 'tezos', 'axie-infinity', 'the-sandbox', 'maker', 'neo', 'chiliz', 'huobi-token', 'optimism',
+    'dash', 'cake', 'iota', 'gmx', 'zilliqa', '1inch', 'osmosis', 'floki', 'dydx', 'woo-network', 'link', 'gala', 'lisk'
+  ]; //temp
   selectedCryptoPrice=0;
   onSubmit = () => {
        axios.get('https://api.coingecko.com/api/v3/coins/markets', {

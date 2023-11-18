@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {TradeModel} from "../../models/trade-model";
 import { MatDialog} from "@angular/material/dialog";
-import {DashboardComponent} from "../dashboard.component";
 import {TradeDialogComponent} from "../../trade/trade-dialog/trade-dialog.component";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {TradeService} from "../../services/trade.service";
 
 @Component({
   selector: 'management-panel',
@@ -21,15 +20,9 @@ export class ManagementPanelComponent implements OnInit{
   constructor(
     private db: AngularFirestore,
     private dialog: MatDialog,
-    public dashboard: DashboardComponent,
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder,
+    public tradeService: TradeService
   ) {
-    this.dashboard.getTrades();
-    this.db.collection<TradeModel>('trades').get().subscribe(() => {
-      // const names: any[] = querySnapshot.docs.map(doc => doc.data().coinName);
-      this.dashboard.getCurrentPrices();
-    });
-    this.dashboard.sumInvestedMoney();
   }
 
   ngOnInit(): void {

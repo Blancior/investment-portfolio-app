@@ -24,6 +24,9 @@ import { TradeDialogComponent } from './trade/trade-dialog/trade-dialog.componen
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {HighchartsChartModule} from "highcharts-angular";
+import { ChartsComponent } from './dashboard/charts/charts.component';
+import {ChartsModule} from "./dashboard/charts/charts-panel/charts-panel";
 
 const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
   width:'700px',
@@ -42,6 +45,8 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
     TradeDialogComponent,
     LoginComponentComponent,
     NavbarComponent,
+    ChartsComponent,
+    ChartsModule
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,9 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
     MatInputModule,
     MatDialogModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    HighchartsChartModule
+
   ],
   providers: [
     MatDialog,
