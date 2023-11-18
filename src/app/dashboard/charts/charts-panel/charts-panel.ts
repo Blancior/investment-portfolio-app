@@ -1,6 +1,5 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit,} from '@angular/core';
 import * as Highcharts from 'highcharts';
-import {TradeModel} from "../../../models/trade-model";
 import {TradeService} from "../../../services/trade.service";
 
 
@@ -9,36 +8,28 @@ import {TradeService} from "../../../services/trade.service";
   templateUrl: `charts-panel.html`
 })
 
-export class ChartsModule implements OnInit,OnChanges{
-  @Input() currentPricesMap!: Map<TradeModel,number>;
-  tabka1: Map<TradeModel,number> = new Map<TradeModel, number>();
+export class ChartsModule implements OnInit{
+  coinsMap: Map<string,number> = new Map<string, number>();
 
   constructor(private tradeService: TradeService) {
-
   }
 
   ngOnInit(): void {
-    console.log(this.tabka1,'adadadad');
-    this.tabka1 = this.currentPricesMap;
-    this.updateChart(this.tabka1);
-    console.log(this.currentPricesMap.entries().next().value,'sdfgsdsdgsdgsdg')
+    this.tradeService.recordsMap$.subscribe(map => {
+      this.coinsMap = map;
+      this.updateChart()
+    })
+
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['currentPricesMap'] && this.currentPricesMap) {
-      for (const changesKey in this.currentPricesMap) {
-        this.tabka1 = this.currentPricesMap.entries().next().value;
-      }
-
-      this.updateChart(this.tabka1);
-    }
-  }
-
 
   Highcharts: typeof Highcharts = Highcharts; // required
   chartConstructor: string = 'chart'; // optional string, defaults to 'chart'
   chartOptions: Highcharts.Options = {
+    title: {
+      text: 'Value of each currency in USD'
+    },
     plotOptions: {
+
       series: {
         // general options for all series
       },
@@ -48,24 +39,24 @@ export class ChartsModule implements OnInit,OnChanges{
     },
     series: [{
       name: 'Name',
-      data: Array.from(this.tabka1.entries())
+      data: Array.from(this.coinsMap)
         .map(([record, value]) =>
-          ({ name: record.coinName, y: value })),
+          ({ name: record, y: value })),
       type: 'pie'
     }],
 
   }; // required
-  chartCallback: Highcharts.ChartCallbackFunction = function (chart) { } // optional function, defaults to null
+  chartCallback: Highcharts.ChartCallbackFunction = function (chart) {}
+   // optional function, defaults to null
   updateFlag: boolean = false; // optional boolean
   oneToOneFlag: boolean = true; // optional boolean, defaults to false
   runOutsideAngular: boolean = false; // optional boolean, defaults to false
 
-  updateChart(records: Map<TradeModel,number>) {
-    console.log('ChartsModule updateChart', records);
+  updateChart() {
     this.chartOptions.series = [{
-      name: 'Value',
-      data: Array.from(this.tabka1.entries())
-        .map(([record, value]) => ({ name: record.coinName, y: Math.round((record.quantity * record.priceusd)*100)/100 })),
+      name: 'Value in USD',
+      data: Array.from(this.coinsMap)
+        .map(([record, value]) => ({ name: record, y: Math.round((value)*100)/100 })),
       type: 'pie'
     }];
     this.updateFlag = true;

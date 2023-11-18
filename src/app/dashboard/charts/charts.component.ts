@@ -1,5 +1,4 @@
-import {Component, Input} from '@angular/core';
-import {TradeModel} from "../../models/trade-model";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'charts-component',
@@ -7,6 +6,5 @@ import {TradeModel} from "../../models/trade-model";
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent {
-@Input() currentPricesMap: Map<TradeModel,number>;
 
 }

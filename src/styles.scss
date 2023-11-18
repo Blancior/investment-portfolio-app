@@ -1,14 +1,8 @@
 @import "bootstrap/scss/bootstrap";
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-//body{
-//  background: #8E2DE2;  /* fallback for old browsers */
-//  background: -webkit-linear-gradient(120deg, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
-//  background: linear-gradient(120deg, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-//
-//}
-
-
-
+.mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input{
+  width: 100%;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

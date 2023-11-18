@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {map, Observable} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
 import {TradeModel} from "../models/trade-model";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 
@@ -9,6 +9,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 export class TradeService {
 
   records$!: Observable<TradeModel[]>;
+  private _recordsMap: BehaviorSubject<Map<string, number>> = new BehaviorSubject(new Map());
 
   constructor(
     private db: AngularFirestore
@@ -16,6 +17,9 @@ export class TradeService {
     this.records$ = this.getTrades();
   }
 
+  get recordsMap$(): Observable<Map<string, number>> {
+    return this._recordsMap.asObservable();
+  }
 
   getTrades(): Observable<TradeModel[]>{
     return this.db.collection<TradeModel>('trades').valueChanges();
@@ -82,16 +86,7 @@ export class TradeService {
     let date2 =Number(Date.parse(currentDate));
     return  Math.floor((date2 - date1)/(1000*60*60*24));
   }
-  // getInvestedCryptos() {
-  //   this.db.collection<TradeModel>('trades').get().toPromise().then((qSnap => {
-  //     let recs = [];
-  //     qSnap.forEach((doc) => {
-  //       let name = doc.data().coinName;
-  //       recs.push(name);
-  //     });
-  //     recs = recs.filter((item) => typeof item !== 'undefined');
-  //     this.investedCoins = recs;
-  //   }));
-  //
-  // }
+  updateRecordsMap(newRecordsMap: Map<string, number>): void {
+    this._recordsMap.next(newRecordsMap);
+  }
 }

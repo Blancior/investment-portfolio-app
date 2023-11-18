@@ -8,7 +8,6 @@ styleUrls: ['./asset.component.scss']
 
 })
 export class AssetComponent{
-  apikey= '4697a2f8-01cf-4bd3-9d0b-29f3a4d1b835';
   selectedCrypto:string;
   displayedRN:string='bitcoin';
   cryptoPrice :any;
@@ -27,7 +26,6 @@ export class AssetComponent{
            ids: this.selectedCrypto
          }
        }).then(response => {
-           console.log(response.data[0].current_price);
            this.selectedCryptoPrice=response.data[0].current_price;
            if (this.selectedCryptoPrice.toString().length>5)
              Math.round(this.selectedCryptoPrice);

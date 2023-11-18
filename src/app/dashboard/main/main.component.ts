@@ -16,7 +16,7 @@ export class MainComponent implements OnInit, OnDestroy {
   timeSinceMax: any;
   records$: Observable<TradeModel[]>;
   records: TradeModel[] = [];
-  currentPricesMap: Map<TradeModel, number> = new Map<TradeModel, number>();
+  currentPricesMap: Map<string, number> = new Map<string, number>();
   coinNames: string[] = [];
   coinNames2: string[] = [];
   actual: number = 0;
@@ -38,8 +38,16 @@ export class MainComponent implements OnInit, OnDestroy {
         this.coinNames = this.records.map((record: TradeModel) => record.coinName);
         this.getCurrentPrices().then(() => {
           this.records.forEach((record) => {
+            record.coinName = record.coinName.toLowerCase()
+            const value = record.priceusd * record.quantity;
             this.totalInv += record.investedInUSD
-            this.actual += record.priceusd * record.quantity;
+            this.actual += value;
+            if (this.currentPricesMap.has(record.coinName)){
+              const currentValue = this.currentPricesMap.get(record.coinName)
+              this.currentPricesMap.set(record.coinName,currentValue+(value));
+            }else this.currentPricesMap.set(record.coinName,value);
+            this.tradeService.updateRecordsMap(this.currentPricesMap)
+
           })
         }).finally(() => {
           this.totalInv = Math.round(this.totalInv);
@@ -104,11 +112,16 @@ export class MainComponent implements OnInit, OnDestroy {
 
 
   async getCurrentPrices() {
-    const prices = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=' + this.coinNames.toString() + '&vs_currencies=usd');
-    const pricesData = prices.data;
-    this.records.forEach((record) => {
-      record.priceusd = pricesData[record.coinName.toLowerCase()].usd;
-    })
+    await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=' + this.coinNames.toString() + '&vs_currencies=usd').then((res)=>{
+      const pricesData = res.data;
+      this.records.forEach((record) => {
+        record.priceusd = pricesData[record.coinName.toLowerCase()].usd;
+      })
+    }).catch((error)=>{
+      console.log(error,'XDDDDDD')
+    });
+
+
   }
 
 }
