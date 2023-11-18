@@ -5,30 +5,38 @@
     <div class="row trade">
     <form [formGroup]="form1">
     <div class="row">
-         <div class="col form-col">
-          <label>Asset Name</label>
-          <select  class="form-select"  formControlName="name">
-<!--            <option *ngFor="let coin of dashboard.coinNames1" [value]=coin (resize)="5">-->
-<!--              {{coin.toUpperCase()}}-->
-<!--            </option>-->
-          </select>
-           <mat-error *ngIf="form1.get('name')?.errors?.['required']">Asset name is required</mat-error>
-         </div>
+           <mat-form-field>
+           <mat-label>Asset Name</mat-label>
+           <mat-select formControlName="name">
+             <mat-option *ngFor="let coin of coinNames1" [value]=coin (resize)="5">
+               {{coin.toUpperCase()}}
+             </mat-option>
+           </mat-select>
+           <mat-error *ngIf="form1.get('name')?.hasError('required')">Asset name is required</mat-error>
+         </mat-form-field>
 
-        <div class="col form-col">
-          <label>Amount</label>
-          <input type="number" class="form-control"  formControlName="amount" required>
-          <mat-error *ngIf="form1.get('amount')?.errors?.['required']">Insert amount</mat-error>
-        </div>
-        <div class="col form-col">
-          <label>Invested money</label>
-          <input matInput type="number" class="form-control"  formControlName="invested" required>
-          <mat-error *ngIf="form1.get('invested')?.errors?.['required']">Insert invested money</mat-error>
-        </div>
-        <div class="col form-col">
-          <label>Date</label>
-          <input type="datetime-local" class="form-control" [(ngModel)]="CDateI" [ngModelOptions]="{standalone: true}">
-        </div>
+    </div>
+      <div class="row">
+          <mat-form-field>
+            <mat-label>Amount</mat-label>
+            <input type="number" matInput formControlName="amount">
+            <mat-error *ngIf="form1.get('amount')?.errors?.['required']">Insert amount</mat-error>
+          </mat-form-field>
+      </div>
+      <div class="row">
+          <mat-form-field>
+            <mat-label>Invested money</mat-label>
+            <input matInput type="number" formControlName="invested">
+            <mat-error *ngIf="form1.get('invested')?.errors?.['required']">Insert invested money</mat-error>
+          </mat-form-field>
+      </div>
+      <div class="row">
+          <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="CDateI">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
       </div>
       <div class="row btnA">
         <button class="btn" mat-raised-button (click)="addTrade()"><b>Enter Trade</b></button>
@@ -50,9 +58,9 @@
 
   <ul class="trade col" *ngFor="let trade of tradeService.records$ | async; let i = index">
     <li>{{i+1}}</li>
-    <li>{{trade.coinName.toUpperCase()}}</li>
-    <li>{{(trade.priceusd*trade.quantity).toFixed(3)}}</li>
-    <li>{{(trade.priceusd).toFixed(2)}}</li>
+    <li>{{trade.coinName}}</li>
+    <li>{{(trade.priceusd*trade.quantity)}}</li>
+    <li>{{(trade.priceusd)}}</li>
     <li>{{trade.quantity}}</li>
     <li>{{trade.date | date: 'dd-MM-yyyy'}}</li>
     <li id="buttonD">

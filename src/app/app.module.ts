@@ -27,6 +27,8 @@ import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {HighchartsChartModule} from "highcharts-angular";
 import { ChartsComponent } from './dashboard/charts/charts.component';
 import {ChartsModule} from "./dashboard/charts/charts-panel/charts-panel";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from '@angular/material/core'
 
 const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
   width:'700px',
@@ -48,27 +50,29 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
     ChartsComponent,
     ChartsModule
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonToggleModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-    MatButtonModule,
-    MatInputModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatCardModule,
-    HighchartsChartModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonToggleModule,
+        MatFormFieldModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
+        MatButtonModule,
+        MatInputModule,
+        MatDialogModule,
+        MatSelectModule,
+        MatCardModule,
+        HighchartsChartModule,
+        MatDatepickerModule,
+        MatNativeDateModule
 
-  ],
+    ],
   providers: [
     MatDialog,
     DashboardComponent,

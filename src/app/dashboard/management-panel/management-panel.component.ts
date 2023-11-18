@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import { MatDialog} from "@angular/material/dialog";
 import {TradeDialogComponent} from "../../trade/trade-dialog/trade-dialog.component";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {TradeService} from "../../services/trade.service";
 
 @Component({
@@ -10,31 +10,37 @@ import {TradeService} from "../../services/trade.service";
   templateUrl: 'management-panel.component.html',
   styleUrls: ['./management-panel.component.scss', '../main/main.component.scss']
 })
-export class ManagementPanelComponent implements OnInit{
+export class ManagementPanelComponent{
 
-  CnameI:string;
-  CQuantI:number;
-  CInvestedMoneyI:number;
   CDateI:string = new Date().toISOString().slice(0,19);
-  form1: FormGroup;
+  coinNames1: string[] = [
+    'bitcoin', 'ethereum', 'ripple', 'dogecoin', 'cardano', 'binancecoin', 'solana', 'polkadot', 'litecoin', 'tron', 'shiba-inu', 'dai', 'uniswap', 'chainlink', 'wrapped-bitcoin',
+    'cosmos', 'monero', 'algorand', 'lido-dao', 'ethereum-classic', 'okb', 'bitcoin-cash', 'stellar', 'filecoin', 'aptos', 'cronos', 'near', 'vechain', 'apecoin', 'internet-computer',
+    'algorand', 'eos', 'the-graph', 'fantom', 'decentraland', 'bitdao', 'aave', 'flow', 'tezos', 'axie-infinity', 'the-sandbox', 'maker', 'neo', 'chiliz', 'huobi-token', 'optimism',
+    'dash', 'cake', 'iota', 'gmx', 'zilliqa', '1inch', 'osmosis', 'floki', 'dydx', 'woo-network', 'link', 'gala', 'lisk'
+  ]; //temp
+  form1 = this.formbuilder.group({
+    name: ['', {validators: [Validators.required]}],
+    amount: ['', {validators: [Validators.required]}],
+    invested: ['', {validators: [Validators.required]}],
+    date: [this.CDateI, {validators: [Validators.required]}],
+  })
+
   constructor(
     private db: AngularFirestore,
     private dialog: MatDialog,
     private formbuilder: FormBuilder,
     public tradeService: TradeService
   ) {
+    this.CDateI= new Date().toISOString().slice(0,19);
   }
-
-  ngOnInit(): void {
-    this.buildForm();
-    }
   addTrade(){
     this.CDateI= new Date().toISOString().slice(0,19);
     const rc = this.db.collection('trades');
     rc.add({
-      coinName: this.CnameI,
-      investedInUSD: this.CInvestedMoneyI,
-      quantity: this.CQuantI,
+      coinName: this.form1.get('name').value,
+      investedInUSD: this.form1.get('invested').value,
+      quantity: this.form1.get('amount').value,
       date: this.CDateI,
     });
     this.form1.reset();
@@ -53,13 +59,6 @@ export class ManagementPanelComponent implements OnInit{
   }
   goToDelete(trade: any){
     this.dialog.open(TradeDialogComponent,{data: trade});
-  }
-  private buildForm(){
-    this.form1 = this.formbuilder.group({
-      name: ['', {validators: [Validators.required]}],
-      amount: ['', {validators: [Validators.required]}],
-      invested: ['', {validators: [Validators.required]}],
-    })
   }
 
 }
