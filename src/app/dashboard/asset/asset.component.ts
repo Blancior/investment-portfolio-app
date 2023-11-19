@@ -33,7 +33,8 @@ export class AssetComponent{
              params: {
                vs_currency: 'usd',
                ids: this.selectedCrypto
-             }
+             },
+             headers: { "Access-Control-Allow-Origin": "*"}
            }).then(response => {
              console.log(response.data)
              this.selectedCryptoPrice=response.data[0].current_price;
