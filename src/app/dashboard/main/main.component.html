@@ -1,55 +1,60 @@
 <app-navbar></app-navbar>
-<div class="container main-container">
+<div class="container-fluid main-container">
   <div class="row">
-    <div class="col col-md-4 indicator">
-      <span class="text-area">
-        You made {{numberOfTrades}} trades
-      </span>
+    <div class="col-md-4 indicator">
+      <div class="text-area">
+        <p>You made {{numberOfTrades}} trades</p>
+      </div>
     </div>
-    <div class="col col-md-4 indicator">
-      <span class="text-area">
-        Invested money:   {{totalInv}}$
-      </span>
+    <div class="col-md-4 indicator ">
+       <div class="text-area">
+         <p>Invested money:</p>
+         <p>{{totalInv}}$</p>
+       </div>
     </div>
-    <div class="col col-md-4">
-      <span class="text-area">
+    <div class="col-md-4">
+      <div class="text-area">
         <p>First trade:</p>
-         <p>{{maxDate | date: 'dd-MM-yyyy'}} ({{tradeService.calcTime(maxDate)}} days ago)</p>
-      </span>
+         <p>{{maxDate | date: 'dd-MM-yyyy'}}</p>
+        <p>({{tradeService.calcTime(maxDate)}} days ago)</p>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col col-md-4 indicator" id="profit" [ngStyle]="{'color':(actual/totalInv)>1 ? 'green' : 'red' }">
-      <span class="text-area">
-      {{((this.actual/totalInv)*100)>100 ? 'Profit: +'+((actual/totalInv)*100-100).toFixed(2)
+    <div class="col-md-4 indicator" id="profit" [ngStyle]="{'color':(actual/totalInv)>1 ? 'green' : 'red' }">
+      <div class="text-area">
+      <p>
+        {{((this.actual/totalInv)*100)>100 ? 'Profit: +'+((actual/totalInv)*100-100).toFixed(2)
         : 'Loss -'+((totalInv/actual)*100-100).toFixed(2)}}%
-      </span>
+      </p>
+      </div>
     </div>
 
-    <div class="col col-md-4 indicator" id="currentBalance">
-      <span class="text-area">
-        Actual value: {{actual}}$
-      </span>
+    <div class="col-md-4 indicator" id="currentBalance">
+      <div class="text-area">
+        <p>
+          Actual value: {{actual}}$
+        </p>
+      </div>
     </div>
-    <div class="col col-md-4">
-      <span class="text-area">
+    <div class="col-md-4">
+      <div class="text-area">
        <p> Last trade:</p>
-         <p>{{minDate| date: 'dd-MM-yyyy'}} ({{tradeService.calcTime(minDate)}} days ago)</p>
-      </span>
+         <p>{{minDate| date: 'dd-MM-yyyy'}}</p>
+          <p>({{tradeService.calcTime(minDate)}} days ago)</p>
+      </div>
     </div>
   </div>
-  <div class="container">
     <charts-component></charts-component>
-  </div>
-  <div class="container invList">
+  <div class="invList">
       <p class="title1">List of trades</p>
       <div class="descriptionList">
       <div class="row"> Index</div>
-      <div class="row" (click)="sortByDate('name')"> Asset name</div>
-      <div class="row" (click)="sortByDate('value')"> Value ($)</div>
-      <div class="row" (click)="sortByDate('price')"> Price ($)</div>
-      <div class="row" (click)="sortByDate('amount')"> Amount</div>
-      <div class="row" (click)="sortByDate('date')"> Date of bought</div>
+      <div class="row cursor-pointer" (click)="sortByDate('name')"> Asset name</div>
+      <div class="row cursor-pointer" (click)="sortByDate('value')"> Value ($)</div>
+      <div class="row cursor-pointer" (click)="sortByDate('price')"> Price ($)</div>
+      <div class="row cursor-pointer" (click)="sortByDate('amount')"> Amount</div>
+      <div class="row cursor-pointer" (click)="sortByDate('date')"> Date of bought</div>
     </div>
     <ul class="trade col" *ngFor="let trade of records$ | async; let i = index">
       <li>{{i+1}}</li>

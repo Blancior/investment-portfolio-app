@@ -59,8 +59,8 @@
   <ul class="trade col" *ngFor="let trade of tradeService.records$ | async; let i = index">
     <li>{{i+1}}</li>
     <li>{{trade.coinName}}</li>
-    <li>{{(trade.priceusd*trade.quantity)}}</li>
-    <li>{{(trade.priceusd)}}</li>
+    <li>{{(trade.priceusd*trade.quantity).toFixed(2)}}</li>
+    <li>{{(trade.priceusd).toFixed(2)}}</li>
     <li>{{trade.quantity}}</li>
     <li>{{trade.date | date: 'dd-MM-yyyy'}}</li>
     <li id="buttonD">
