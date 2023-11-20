@@ -118,7 +118,7 @@ export class MainComponent implements OnInit, OnDestroy {
         record.priceusd = pricesData[record.coinName.toLowerCase()].usd;
       })
     }).catch((error)=>{
-      console.log(error,'XDDDDDD')
+      console.log(error)
     });
 
 

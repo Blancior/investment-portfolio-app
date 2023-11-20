@@ -55,31 +55,13 @@ export class TradeService {
         let maxDate: string = '';
         querySnapshot.forEach(doc => {
           const data = doc.data() as { date: string };
-          console.log(data.date);
           maxDate = data.date;
         });
         return maxDate;
       })
     );
   }
-  sumInvestedMoney(){
-    this.db
-      .collection<TradeModel>('trades')
-      .snapshotChanges()
-      .pipe(
-        map((changes) => changes.map((c) => c.payload.doc.data().investedInUSD)),
-        map((params) => params.reduce((prev, curr) => prev + curr, 0))
-      )
-      .subscribe((sum) => {
-        return sum
-      });
-  }
 
-  getNumberOfTrades(){
-    this.db.collection('trades').get().toPromise().then(snapshot => {
-      return snapshot.size;
-    })
-  }
   calcTime(date: any){
     let currentDate = new Date().toISOString();
     let date1 = Number(Date.parse(date));
@@ -89,4 +71,5 @@ export class TradeService {
   updateRecordsMap(newRecordsMap: Map<string, number>): void {
     this._recordsMap.next(newRecordsMap);
   }
+
 }

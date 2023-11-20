@@ -26,7 +26,6 @@ export class AssetComponent{
 
   constructor(private dialog: MatDialog) {
   }
-
   onSubmit = () => {
          if (this.selectedCrypto!= ''){
            axios.get('https://api.coingecko.com/api/v3/coins/markets', {
@@ -52,7 +51,6 @@ export class AssetComponent{
            });
          }
      }
-fun(){
-  console.log(this.selectedCrypto)
-}
+
+
 }

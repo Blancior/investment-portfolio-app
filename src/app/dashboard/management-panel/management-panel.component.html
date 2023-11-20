@@ -7,33 +7,33 @@
     <div class="row">
            <mat-form-field>
            <mat-label>Asset Name</mat-label>
-           <mat-select formControlName="name">
+fix           <mat-select formControlName="coinName">
              <mat-option *ngFor="let coin of coinNames1" [value]=coin (resize)="5">
                {{coin.toUpperCase()}}
              </mat-option>
            </mat-select>
-           <mat-error *ngIf="form1.get('name')?.hasError('required')">Asset name is required</mat-error>
+           <mat-error *ngIf="form1.get('coinName')?.hasError('required')">Asset name is required</mat-error>
          </mat-form-field>
 
     </div>
       <div class="row">
           <mat-form-field>
             <mat-label>Amount</mat-label>
-            <input type="number" matInput formControlName="amount">
-            <mat-error *ngIf="form1.get('amount')?.errors?.['required']">Insert amount</mat-error>
+            <input type="number" matInput formControlName="quantity">
+            <mat-error *ngIf="form1.get('quantity')?.errors?.['required']">Insert amount</mat-error>
           </mat-form-field>
       </div>
       <div class="row">
           <mat-form-field>
             <mat-label>Invested money</mat-label>
-            <input matInput type="number" formControlName="invested">
-            <mat-error *ngIf="form1.get('invested')?.errors?.['required']">Insert invested money</mat-error>
+            <input matInput type="number" formControlName="investedInUSD">
+            <mat-error *ngIf="form1.get('investedInUSD')?.errors?.['required']">Insert invested money</mat-error>
           </mat-form-field>
       </div>
       <div class="row">
           <mat-form-field>
             <mat-label>Date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="CDateI">
+            <input matInput [matDatepicker]="picker" formControlName="date">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>

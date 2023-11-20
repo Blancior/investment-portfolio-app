@@ -20,9 +20,9 @@ export class ManagementPanelComponent{
     'dash', 'cake', 'iota', 'gmx', 'zilliqa', '1inch', 'osmosis', 'floki', 'dydx', 'woo-network', 'link', 'gala', 'lisk'
   ]; //temp
   form1 = this.formbuilder.group({
-    name: ['', {validators: [Validators.required]}],
-    amount: ['', {validators: [Validators.required]}],
-    invested: ['', {validators: [Validators.required]}],
+    coinName: ['', {validators: [Validators.required]}],
+    quantity: ['', {validators: [Validators.required]}],
+    investedInUSD: ['', {validators: [Validators.required]}],
     date: [this.CDateI, {validators: [Validators.required]}],
   })
 
@@ -34,15 +34,11 @@ export class ManagementPanelComponent{
   ) {
     this.CDateI= new Date().toISOString().slice(0,19);
   }
+
   addTrade(){
     this.CDateI= new Date().toISOString().slice(0,19);
     const rc = this.db.collection('trades');
-    rc.add({
-      coinName: this.form1.get('name').value,
-      investedInUSD: this.form1.get('invested').value,
-      quantity: this.form1.get('amount').value,
-      date: this.CDateI,
-    });
+    rc.add(this.form1.value);
     this.form1.reset();
   }
   deleteRecord(coinName: string, quantity: number, date: string) {
@@ -57,8 +53,8 @@ export class ManagementPanelComponent{
     });
     this.dialog.closeAll();
   }
+
   goToDelete(trade: any){
     this.dialog.open(TradeDialogComponent,{data: trade});
   }
-
 }
