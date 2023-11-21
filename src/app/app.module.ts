@@ -30,6 +30,7 @@ import {ChartsModule} from "./dashboard/charts/charts-panel/charts-panel";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from '@angular/material/core';
 import { ApiOverheatDialogComponent } from './dashboard/api-overheat-dialog/api-overheat-dialog.component'
+import {HttpClientModule} from "@angular/common/http";
 
 const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
   width:'700px',
@@ -72,7 +73,8 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
         MatCardModule,
         HighchartsChartModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        HttpClientModule
 
     ],
   providers: [

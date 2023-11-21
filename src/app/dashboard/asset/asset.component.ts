@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import axios from "axios";
 import {MatDialog} from "@angular/material/dialog";
 import {ApiOverheatDialogComponent} from "../api-overheat-dialog/api-overheat-dialog.component";
+import {TradeService} from "../../services/trade.service";
+import {catchError, map, of} from "rxjs";
 
 @Component({
 selector: 'asset',
@@ -23,31 +24,29 @@ export class AssetComponent{
   ]; //temp
   selectedCryptoPrice=0;
 
-
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog,
+              private ts: TradeService) {
   }
+
+
   onSubmit = () => {
          if (this.selectedCrypto!= ''){
-           axios.get('https://api.coingecko.com/api/v3/coins/markets', {
-             params: {
-               vs_currency: 'usd',
-               ids: this.selectedCrypto
-             },
-             headers: { "Access-Control-Allow-Origin": "*"}
-           }).then(response => {
-             console.log(response.data)
-             this.selectedCryptoPrice=response.data[0].current_price;
-             if (this.selectedCryptoPrice.toString().length>5)
-               Math.round(this.selectedCryptoPrice*100)/100;
-             this.displayedRN=response.data[0].name;
-             this.coinImage = response.data[0].image;
-             document.getElementById("ind2").style.visibility='visible';
-             this.date = new Date();
-           }).catch(error => {
-             this.dialog.open(ApiOverheatDialogComponent,{
-               disableClose: false
+           this.ts.getSelectedCryptoInfo(this.selectedCrypto).pipe(
+             map((res: any) => {
+               console.log(res);
+               return res;
+             }),
+             catchError(error => {
+               this.dialog.open(ApiOverheatDialogComponent, { disableClose: false });
+               console.error(error);
+               return of(null);
              })
-             console.log(error);
+           ).subscribe((res) => {
+               this.selectedCryptoPrice = res[0].current_price;
+               this.displayedRN = res[0].name;
+               this.coinImage = res[0].image;
+               document.getElementById("ind2").style.visibility = 'visible';
+               this.date = new Date();
            });
          }
      }

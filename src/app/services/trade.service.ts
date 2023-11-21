@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {TradeModel} from "../models/trade-model";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class TradeService {
   private _recordsMap: BehaviorSubject<Map<string, number>> = new BehaviorSubject(new Map());
 
   constructor(
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private http: HttpClient
   ) {
     this.records$ = this.getTrades();
   }
@@ -71,5 +73,12 @@ export class TradeService {
   updateRecordsMap(newRecordsMap: Map<string, number>): void {
     this._recordsMap.next(newRecordsMap);
   }
-
+  getSelectedCryptoInfo(selectedCrypto: string): Observable<any> {
+    return this.http.get('https://api.coingecko.com/api/v3/coins/markets', {
+      params: {
+        vs_currency: 'usd',
+        ids: selectedCrypto
+      }
+    });
+  }
 }

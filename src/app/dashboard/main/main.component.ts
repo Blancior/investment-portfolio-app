@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TradeModel} from "../../models/trade-model";
 import {Observable, of, tap} from "rxjs";
-import axios from "axios";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {TradeService} from "../../services/trade.service";
+import {HttpClient} from "@angular/common/http";
+
 
 @Component({
   selector: 'app-main',
@@ -27,7 +28,8 @@ export class MainComponent implements OnInit, OnDestroy {
   dataLoaded: boolean = false;
   sortMode = false;
   constructor(public db: AngularFirestore,
-              public tradeService: TradeService) {
+              public tradeService: TradeService,
+              private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -36,9 +38,9 @@ export class MainComponent implements OnInit, OnDestroy {
       this.records$ = this.tradeService.getTrades().pipe(tap((res) => {
         this.records = res;
         this.coinNames = this.records.map((record: TradeModel) => record.coinName);
-        this.getCurrentPrices().then(() => {
+        this.getCurrentPrices().then(()=>{
           this.records.forEach((record) => {
-            record.coinName = record.coinName.toLowerCase()
+            record.coinName = record.coinName.toLowerCase();
             const value = record.priceusd * record.quantity;
             this.totalInv += record.investedInUSD
             this.actual += value;
@@ -47,14 +49,14 @@ export class MainComponent implements OnInit, OnDestroy {
               this.currentPricesMap.set(record.coinName,currentValue+(value));
             }else this.currentPricesMap.set(record.coinName,value);
             this.tradeService.updateRecordsMap(this.currentPricesMap)
-
           })
-        }).finally(() => {
+        }).finally(()=>{
           this.totalInv = Math.round(this.totalInv);
           this.actual = Math.round(this.actual * 100) / 100;
           this.numberOfTrades = this.records.length;
           this.tradeService.records$ = this.records$;
         });
+
       }));
       this.dataLoaded = true;
     }
@@ -112,16 +114,20 @@ export class MainComponent implements OnInit, OnDestroy {
 
 
   async getCurrentPrices() {
-    await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=' + this.coinNames.toString() + '&vs_currencies=usd').then((res)=>{
-      const pricesData = res.data;
+    try {
+      const response = await this.http.get('https://api.coingecko.com/api/v3/simple/price', {
+        params: {
+          ids: this.coinNames.toString(),
+          vs_currencies: 'usd',
+        },
+      }).toPromise();
+      const pricesData = response as Record<string, { usd: number }>;
       this.records.forEach((record) => {
         record.priceusd = pricesData[record.coinName.toLowerCase()].usd;
-      })
-    }).catch((error)=>{
-      console.log(error)
-    });
-
-
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 }

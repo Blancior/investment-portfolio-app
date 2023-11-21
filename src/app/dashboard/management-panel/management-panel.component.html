@@ -7,7 +7,7 @@
     <div class="row">
            <mat-form-field>
            <mat-label>Asset Name</mat-label>
-fix           <mat-select formControlName="coinName">
+             <mat-select formControlName="coinName">
              <mat-option *ngFor="let coin of coinNames1" [value]=coin (resize)="5">
                {{coin.toUpperCase()}}
              </mat-option>
