@@ -4,8 +4,8 @@
     <form class="form1" (ngSubmit)="onSubmit()">
     <p>Select the currency you want to check the price</p>
       <select  class="form-select" [(ngModel)]="selectedCrypto" [ngModelOptions]="{standalone: true}">
-        <option *ngFor="let coin of coinNames1" [value]=coin>
-          {{coin.toUpperCase()}}
+        <option *ngFor="let coin of coins" [value]=coin.id>
+          {{coin.name.toUpperCase()}}
         </option>
       </select>
   <input type="submit" class="btn btn-primary" value="Check price">
@@ -21,7 +21,20 @@
       <img mat-card-image [src]="coinImage" style="width: 150px; border-radius: 25px;" alt="{{displayedRN}}">
     </div>
     <mat-card-content class="margin-2">
-      {{selectedCryptoPrice}}$
+      <p>Current Price</p>
+      <p>{{selectedCryptoPrice}}$</p>
+      <div>
+        <p>All time high:</p>
+        <p>{{athPrice}}$</p>
+      </div>
+      <div>
+        <p>Price change in last day:</p>
+        <p [ngStyle]="{'color' : priceChange24h> 0 ? 'green' : 'red'}">{{priceChange24h> 0 ? +priceChange24h : priceChange24h | number: '1.2-2'}}%</p>
+      </div>
+      <div>
+        <p>Market capitalisation:</p>
+        <p>{{marketCap}}$</p>
+      </div>
     </mat-card-content>
     <mat-card-footer>
       <p>As of:</p>

@@ -21,11 +21,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4 indicator" id="profit" [ngStyle]="{'color':(actual/totalInv)>1 ? 'green' : 'red' }">
+    <div class="col-md-4 indicator" id="profit" [ngStyle]="{'color':(current/totalInv)>1 ? 'green' : 'red' }">
       <div class="text-area">
       <p>
-        {{((this.actual/totalInv)*100)>100 ? 'Profit: +'+((actual/totalInv)*100-100).toFixed(2)
-        : 'Loss -'+((totalInv/actual)*100-100).toFixed(2)}}%
+        {{((this.current/totalInv)*100)>100 ? 'Profit: +'+((current/totalInv)*100-100).toFixed(2)
+        : 'Loss -'+((totalInv/current)*100-100).toFixed(2)}}%
       </p>
       </div>
     </div>
@@ -33,7 +33,7 @@
     <div class="col-md-4 indicator" id="currentBalance">
       <div class="text-area">
         <p>
-          Actual value: {{actual}}$
+          Current value: {{current}}$
         </p>
       </div>
     </div>

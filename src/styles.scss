@@ -6,3 +6,16 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.success-snackBar{
+  background-color: #078706;
+  --mdc-snackbar-container-color: #078706;
+  --mdc-snackbar-supporting-text-color: #f3eff7;
+  color: #f3eff7;
+}
+.failure-snackBar{
+  background-color: #a50004;
+  --mdc-snackbar-container-color: #a50004;
+  --mdc-snackbar-supporting-text-color: #f3eff7;
+  color: #f3eff7;
+}

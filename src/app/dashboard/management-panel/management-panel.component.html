@@ -8,8 +8,8 @@
            <mat-form-field>
            <mat-label>Asset Name</mat-label>
              <mat-select formControlName="coinName">
-             <mat-option *ngFor="let coin of coinNames1" [value]=coin (resize)="5">
-               {{coin.toUpperCase()}}
+             <mat-option *ngFor="let coin of coinNames" [value]=coin.id (resize)="5">
+               {{coin.name.toUpperCase()}}
              </mat-option>
            </mat-select>
            <mat-error *ngIf="form1.get('coinName')?.hasError('required')">Asset name is required</mat-error>

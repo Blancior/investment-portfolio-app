@@ -7,13 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {AngularFireModule} from '@angular/fire/compat';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {environment} from "../environments/environments";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { AssetComponent } from './dashboard/asset/asset.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {environment} from "../environments/evinronments";
 import { MainComponent } from './dashboard/main/main.component';
 import { ManagementPanelComponent } from './dashboard/management-panel/management-panel.component';
 import {MatButtonModule} from "@angular/material/button";
@@ -28,9 +28,11 @@ import {HighchartsChartModule} from "highcharts-angular";
 import { ChartsComponent } from './dashboard/charts/charts.component';
 import {ChartsModule} from "./dashboard/charts/charts-panel/charts-panel";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from '@angular/material/core';
+import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import { ApiOverheatDialogComponent } from './dashboard/api-overheat-dialog/api-overheat-dialog.component'
 import {HttpClientModule} from "@angular/common/http";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
   width:'700px',
@@ -74,7 +76,8 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
         HighchartsChartModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        HttpClientModule
+        HttpClientModule,
+        MatSnackBarModule
 
     ],
   providers: [
@@ -82,7 +85,8 @@ const  MAT_DIALOG_GLOBAL_CONFIG:MatDialogConfig = {
     DashboardComponent,
     ManagementPanelComponent,
     TradeDialogComponent,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: MAT_DIALOG_GLOBAL_CONFIG}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: MAT_DIALOG_GLOBAL_CONFIG},
+    {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'}
   ],
   bootstrap: [AppComponent]
 })

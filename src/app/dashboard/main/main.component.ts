@@ -20,7 +20,7 @@ export class MainComponent implements OnInit, OnDestroy {
   currentPricesMap: Map<string, number> = new Map<string, number>();
   coinNames: string[] = [];
   coinNames2: string[] = [];
-  actual: number = 0;
+  current: number = 0;
   totalInv: number = 0;
   numberOfTrades = 0;
 
@@ -43,7 +43,7 @@ export class MainComponent implements OnInit, OnDestroy {
             record.coinName = record.coinName.toLowerCase();
             const value = record.priceusd * record.quantity;
             this.totalInv += record.investedInUSD
-            this.actual += value;
+            this.current += value;
             if (this.currentPricesMap.has(record.coinName)){
               const currentValue = this.currentPricesMap.get(record.coinName)
               this.currentPricesMap.set(record.coinName,currentValue+(value));
@@ -52,7 +52,7 @@ export class MainComponent implements OnInit, OnDestroy {
           })
         }).finally(()=>{
           this.totalInv = Math.round(this.totalInv);
-          this.actual = Math.round(this.actual * 100) / 100;
+          this.current = Math.round(this.current * 100) / 100;
           this.numberOfTrades = this.records.length;
           this.tradeService.records$ = this.records$;
         });
